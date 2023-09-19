@@ -1,6 +1,8 @@
 # Proyecto_Wordle_G63-3
 
-# Requisitos 
+El juego de Wordle consiste en un programa ...
+
+# Requisitos Funcionales
 
 | Nombre    | R1: Iniciar juego                                                                                                                                          |
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -68,3 +70,7 @@
 | Mostrar significado de la palabra | significado_palabra(palabra) | Wordle      |
 | Mostrar estadísticas              | mostrar_estadisticas(bool)   | Wordle      |
 |Finalizar juego| finalizar_juego(bool)| Wordle      |
+
+# Modelo del mundo del problema (UML)
+
+![UML](https://app.diagrams.net/#G10ySx3OVobGPoSypkRZFwtQrErrMKZHTe)
