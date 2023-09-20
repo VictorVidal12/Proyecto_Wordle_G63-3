@@ -71,19 +71,26 @@ class Jugador:
 
 class Wordle:
     def registrar_jugador(self, nombre: str):
-        self.jugador = Jugador(self.nombre)
+        self.nombre_jugador= nombre
+        self.jugador = Jugador(self)
         print(f"Bienvenido, {self.jugador.nombre}.")
         nuevo_juego = input("¿Deseas empezar un nuevo juego? a: si, b: no ")
         if nuevo_juego == "a":
-            self.iniciar_juego()
+            self.iniciar_juego(True)
         else:
             pass
-    """""
-        self.mostrar_estadistica = mostrar
 
     def iniciar_juego(self, iniciar: bool):
         self.iniciar_juego = iniciar
+        print("adivina la palabra oculta")
 
+        while self.iniciar_juego:
+            self.palabra_intento=input("ingresar palabra: ")
+            self.jugador.ingresar_palabra()
+
+        #self.mostrar_estadistica = mostrar
+        
+    """""
     def significado_palabra(self):
         pass
     def mostrar_instrucciones(bool):
@@ -92,3 +99,6 @@ class Wordle:
         pass
     """
 
+
+
+nombre_jugador= input("ingrese su nombre: ")
