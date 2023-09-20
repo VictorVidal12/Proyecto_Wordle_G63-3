@@ -72,7 +72,7 @@ class Jugador:
 class Wordle:
     def registrar_jugador(self, nombre: str):
         self.nombre_jugador= nombre
-        self.jugador = Jugador(self)
+        self.jugador = Jugador(self.nombre)
         print(f"Bienvenido, {self.jugador.nombre}.")
         nuevo_juego = input("¿Deseas empezar un nuevo juego? a: si, b: no ")
         if nuevo_juego == "a":
