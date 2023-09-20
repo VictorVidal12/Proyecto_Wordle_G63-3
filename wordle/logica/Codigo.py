@@ -1,5 +1,37 @@
+import random
+
+
 class PalabraOculta:
-    pass
+    def __init__(self):
+        self.palabra: list = self.palabra_oculta()
+
+    def palabra_oculta(self):
+        palabras = ["", ""]
+        return random.choice(palabras)
+
+    def verificar_palabra(self, palabra_intento):
+        if palabra_intento in self.palabra_oculta():
+            return True
+        else:
+            return False
+
+    def comparar_palabras(self, palabra_intento):
+        if palabra_intento == self.palabra:
+            pass
+        # se debe llamar jugador gano
+        else:
+            self.retroalimentar(palabra_intento)
+
+    def retroalimentar(self, palabra_intento):
+        retroalimentacion = ""
+        for i in range(len(self.palabra)):
+            if palabra_intento[i] == self.palabra[i]:
+                retroalimentacion += "\033[92m" + palabra_intento[i] + "\033[0m "  # Verde
+            elif palabra_intento[i] in self.palabra:
+                retroalimentacion += "\033[93m" + palabra_intento[i] + "\033[0m "  # Amarillo
+            else:
+                retroalimentacion += "\033[90m" + palabra_intento[i] + "\033[0m "  # Gris
+            print(retroalimentacion)
 
 
 class Jugador:
@@ -36,6 +68,7 @@ class Jugador:
             return True
         else:
             return False
+
 
 class Wordle:
     def registrar_jugador(self, nombre: str):
