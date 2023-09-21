@@ -1,27 +1,29 @@
 import random
+from typing import Union
 
-PALABRAS: list[str] = []
+PALABRAS: list[str] = ["piton", "comer", "trata", "zarza", "camus", "cello", "lapiz", "diera", "zarpa"]
 
 
 class PalabraOculta:
     def __init__(self):
-        self.palabra_oculta: str = PALABRAS[random.randint(0, len(PALABRAS))]
+        self.palabra_oculta: str = PALABRAS[random.randint(0, len(PALABRAS) - 1)]
+
     @staticmethod
-    def verificar_palabra(self, palabra_intento : str):
+    def verificar_palabra(palabra_intento: str):
         if palabra_intento in PALABRAS:
             return True
         else:
             return False
 
-    def comparar_palabras(self, palabra_intento):
+    def comparar_palabras(self, palabra_intento: str):
         if palabra_intento == self.palabra_oculta:
             return True
         else:
             return False
 
-    def retroalimentar(self, palabra_intento):
+    def retroalimentar(self, palabra_intento: str):
         retroalimentacion = ""
-        if  not self.comparar_palabras(palabra_intento):
+        if not self.comparar_palabras(palabra_intento):
             for i in range(len(self.palabra_oculta)):
                 if palabra_intento[i] == self.palabra_oculta[i]:
                     retroalimentacion += "\033[92m" + palabra_intento[i] + "\033[0m "  # Verde
@@ -36,69 +38,42 @@ class Jugador:
     def __init__(self, nombre: str):
         self.nombre: str = nombre
         self.intentos: int = 0
-        self.estadisticas: dict[str, int] = {}
-
-    def ingresar_palabra(self, palabra_intento: str) -> str:
-        if PalabraOculta.verificar_palabra(palabra_intento):
-            self.intento_realizado()
-            return palabra_intento
-        else:
-            return f"Palabra no encontrada en el sistema."
+        self.estadisticas: dict[str, int] = {"Partidas ganadas : ": 0, "Partidas perdidas : ": 0,
+                                             "Partidas jugadas: ": 0, "Racha : ": 0}
 
     def intento_realizado(self):
         self.intentos += 1
 
-    def actualizar_estadisticas(self):
-        if self.jugador_gano():
-            self.estadisticas[str(self.intentos)] += 1
-            self.estadisticas["Partidas ganadas"] += 1
-        else:
-            self.estadisticas["Partidas perdidas"] += 1
-
-
-    def jugador_gano(self) -> bool:
-        if PalabraOculta.palabra_encontrada():
-            return True
-        else:
-            return False
-
-    def jugador_perdio(self) -> bool:
-        if self.intentos == 6 and not self.jugador_gano():
-            return True
+    def ingresar_palabra(self, palabra_intento: str) -> Union[str, bool]:
+        if PalabraOculta.verificar_palabra(palabra_intento):
+            self.intento_realizado()
+            return palabra_intento
         else:
             return False
 
 
 class Wordle:
-    def registrar_jugador(self, nombre: str):
-        self.nombre_jugador= nombre
-        self.jugador = Jugador(self.nombre)
-        print(f"Bienvenido, {self.jugador.nombre}.")
-        nuevo_juego = input("¿Deseas empezar un nuevo juego? a: si, b: no ")
-        if nuevo_juego == "a":
-            self.iniciar_juego(True)
+    def __init__(self, nombre: str):
+        self.jugador: Jugador = Jugador(nombre)
+
+    def jugador_gano(self, palabra_intento: str) -> bool:
+        palabra = self.jugador.ingresar_palabra(palabra_intento)
+        palabra_oculta = PalabraOculta()
+        if palabra_oculta.comparar_palabras(palabra):
+            return True
         else:
-            pass
+            return False
 
-    def iniciar_juego(self, iniciar: bool):
-        self.iniciar_juego = iniciar
-        print("adivina la palabra oculta")
+    def jugador_perdio(self, palabra_intento: str) -> bool:
+        return self.jugador.intentos == 6 and not self.jugador_gano(palabra_intento)
 
-        while self.iniciar_juego:
-            self.palabra_intento=input("ingresar palabra: ")
-            self.jugador.ingresar_palabra()
-
-        #self.mostrar_estadistica = mostrar
-        
-    """""
-    def significado_palabra(self):
-        pass
-    def mostrar_instrucciones(bool):
-        pass
-    def finalizar_juego():
-        pass
-    """
-
-
-
-nombre_jugador= input("ingrese su nombre: ")
+    def actualizar_estadisticas(self, palabra_intento: str):
+        if self.jugador_gano(palabra_intento):
+            # self.jugador.estadisticas[str(self.jugador.intentos)] += 1
+            self.jugador.estadisticas["Partidas ganadas"] += 1
+            self.jugador.estadisticas["Racha"] += 1
+            self.jugador.estadisticas["Partidas jugadas"] += 1
+        elif self.jugador_perdio(palabra_intento):
+            self.jugador.estadisticas["Partidas perdidas"] += 1
+            self.jugador.estadisticas["Racha"] = 0
+            self.jugador.estadisticas["Partidas jugadas"] += 1
