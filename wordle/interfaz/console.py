@@ -1,13 +1,12 @@
 import sys
-from typing import Optional
 from wordle.logica.Codigo import Wordle, Jugador, PalabraOculta
 
 
 class UIConsola:
     def __init__(self):
-        self.wordle: Optional[Wordle] = None
-        self.jugador: Optional[Jugador] = None
-        self.palabraoculta: Optional[PalabraOculta] = None
+        self.wordle = None
+        self.jugador = None
+        self.palabraoculta = None
         self.opciones = {
             "1": self.iniciar_juego,
             "0": self.salir
@@ -15,28 +14,62 @@ class UIConsola:
 
     @staticmethod
     def instrucciones():
-        banner = "WORDLE"
-        print(banner)
-        print("El juego consiste en tratar de adivinar la palabra de 5 letras en 5 intentos")
-        print("Solo serán validas palabras que se encuentren en nuestra base de datos")
-        print("Si ingresas una palabra que no es correcta el juego te retroalimentará de la siguiente forma:")
-        # continuar mostrando la palabra
-        print("Buena suerte jugando")
+        print("El juego consiste en tratar de adivinar la palabra de 5 letras en 5 intentos.")
+        print("Solo serán válidas palabras que se encuentren en nuestra base de datos.")
+        print("Si ingresas una palabra que no es correcta el juego te retroalimentará.")
 
     @staticmethod
     def mostrar_menu():
-        titulo = " WORDLE "
-        print(f"\n{titulo:_^30}")
+        print("\n----- MENU -----")
         print("1. Iniciar nuevo juego")
         print("0. Salir")
-        print(f"{'_':_^30}")
+
+    def registrar_jugador(self):
+        nombre = input("Escribe tu nombre: ")
+        self.wordle = Wordle(nombre=nombre)
+        self.jugador = Jugador(nombre=nombre)
+        self.palabraoculta = PalabraOculta()
+
+    def iniciar_juego(self): # TIENE EL ERROR QUE CUANDO SE ESCRIBE LA PALABRA CORRECTA EL JUEGO NO SE TERMINA
+        intentos = 0
+        while intentos <= 6:
+            palabra_intento = input(f"\nIntentos: {intentos}\nIngresa tu intento: ").lower()
+
+            if not self.palabraoculta.verificar_palabra(palabra_intento):
+                print(f"La palabra {palabra_intento} no es válida.")
+                continue
+
+            self.jugador.ingresar_palabra(palabra_intento)
+            if not self.palabraoculta.comparar_palabras(palabra_intento):
+                self.palabraoculta.retroalimentar(palabra_intento)
+                continue
+
+            elif self.wordle.jugador_gano(palabra_intento):
+                print(f"\n¡Felicidades! Has adivinado la palabra secreta: {self.palabraoculta.palabra_oculta}")
+                self.wordle.actualizar_estadisticas(palabra_intento)
+                self.mostrar_menu_final()
+                break
+
+            intentos += 1
+
+        if intentos > 6:
+            print(f"\n¡Has agotado tus intentos! La palabra secreta era: {self.palabraoculta.palabra_oculta}")
+            self.wordle.actualizar_estadisticas(palabra_intento)
+            self.mostrar_menu_final()
+
+    @staticmethod
+    def mostrar_menu_final(self):
+        print(f"\nEstadísticas de {self.jugador.nombre}:")
+        print(f"Partidas jugadas: {self.jugador.estadisticas['Partidas jugadas']}")
+        print(f"Partidas ganadas: {self.jugador.estadisticas['Partidas ganadas']}")
+        print(f"Partidas perdidas: {self.jugador.estadisticas['Partidas perdidas']}")
+        print(f"Racha: {self.jugador.estadisticas['Racha']}")
 
     def ejecutar_app(self):
         print("WORDLE")
         self.registrar_jugador()
         while True:
             self.instrucciones()
-            print("\n")
             self.mostrar_menu()
             opcion = input("Seleccione una opción: ")
             accion = self.opciones.get(opcion)
@@ -45,46 +78,7 @@ class UIConsola:
             else:
                 print(f"{opcion} no es una opción válida")
 
-    def registrar_jugador(self):
-        nombre: str = input("Escriba su nombre: ")
-        self.wordle = Wordle(nombre=nombre)
-        self.jugador = Jugador(nombre=nombre)
-        self.palabraoculta = PalabraOculta()
-
-    def iniciar_juego(self): # NO ESTÁ COMPLETA TIENE MUCHOS ERRORES
-        intento_palabra: str = input("ingrese la palabra: ")
-        verificar_palabra = self.palabraoculta.verificar_palabra(palabra_intento=intento_palabra)
-        while not self.wordle.jugador_perdio(palabra_intento=intento_palabra):
-            if verificar_palabra:
-                self.jugador.ingresar_palabra(palabra_intento=intento_palabra)
-            else:
-                print(f"La palabra {intento_palabra} no está permitida")
-                break
-        self.palabraoculta.retroalimentar(palabra_intento=intento_palabra)
-        if self.wordle.jugador_gano(palabra_intento=intento_palabra):
-            print(f"Felicitaciones, has adivinado correctamente la palabra ")
-            self.wordle.actualizar_estadisticas(palabra_intento=intento_palabra)
-            self.mostrar_menu_final()
-        elif self.wordle.jugador_perdio(palabra_intento=intento_palabra):
-            print(f"No has adivinado correctamente la palabra")
-            self.wordle.actualizar_estadisticas(palabra_intento=intento_palabra)
-            self.mostrar_menu_final()
-
-    def mostrar_menu_final(self):
-        palabra: str = self.palabraoculta.palabra_oculta
-        partidas_jugadas: int = self.jugador.estadisticas["Partidas jugadas"]
-        partidas_ganadas: int = self.jugador.estadisticas["Partidas ganadas"]
-        partidas_perdidas: int = self.jugador.estadisticas["Partidas perdidas"]
-        racha: int = self.jugador.estadisticas["Racha"]
-
-        print(f"La palabra del día es {palabra}")
-        print("Estadísticas: ")
-        print(f"Partidas jugadas {partidas_jugadas}")
-        print(f"Partidas ganadas {partidas_ganadas}")
-        print(f"Partidas perdidas {partidas_perdidas}")
-        print(f"Racha {racha}")
-
     @staticmethod
     def salir():
-        print("Gracias por jugar, vuelva pronto")
+        print("Gracias por jugar, ¡vuelve pronto!")
         sys.exit(0)
