@@ -31,15 +31,15 @@ class PalabraOculta:
                     retroalimentacion += "\033[93m" + palabra_intento[i] + "\033[0m "  # Amarillo
                 else:
                     retroalimentacion += "\033[90m" + palabra_intento[i] + "\033[0m "  # Gris
-                print(retroalimentacion)
+            print(retroalimentacion)
 
 
 class Jugador:
     def __init__(self, nombre: str):
         self.nombre: str = nombre
         self.intentos: int = 0
-        self.estadisticas: dict[str, int] = {"Partidas ganadas : ": 0, "Partidas perdidas : ": 0,
-                                             "Partidas jugadas: ": 0, "Racha : ": 0}
+        self.estadisticas: dict[str, int] = {"Partidas ganadas": 0, "Partidas perdidas": 0, "Partidas jugadas": 0,
+                                             "Racha": 0}
 
     def intento_realizado(self):
         self.intentos += 1
@@ -55,11 +55,10 @@ class Jugador:
 class Wordle:
     def __init__(self, nombre: str):
         self.jugador: Jugador = Jugador(nombre)
+        self.palabraoculta: PalabraOculta = PalabraOculta()
 
     def jugador_gano(self, palabra_intento: str) -> bool:
-        palabra = self.jugador.ingresar_palabra(palabra_intento)
-        palabra_oculta = PalabraOculta()
-        if palabra_oculta.comparar_palabras(palabra):
+        if self.palabraoculta.comparar_palabras(palabra_intento):
             return True
         else:
             return False
