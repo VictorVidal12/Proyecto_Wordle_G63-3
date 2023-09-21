@@ -22,6 +22,11 @@ class UIConsola:
         print("1. Iniciar nuevo juego")
         print("0. Salir")
 
+    @staticmethod
+    def salir():
+        print("Gracias por jugar, ¡vuelve pronto!")
+        sys.exit(0)
+
     def registrar_jugador(self):
         nombre = input("Escribe tu nombre: ")
         self.wordle = Wordle(nombre=nombre)
@@ -43,6 +48,7 @@ class UIConsola:
                 print(f"\n¡Felicidades! Has adivinado la palabra secreta: {self.wordle.palabraoculta.palabra_oculta}")
                 self.wordle.actualizar_estadisticas(palabra_intento)
                 self.mostrar_menu_final()
+
                 break
 
         if self.wordle.jugador.intentos == 6:
@@ -56,14 +62,12 @@ class UIConsola:
         print("Partidas ganadas:", self.wordle.jugador.estadisticas["Partidas ganadas"])
         print("Partidas perdidas:", self.wordle.jugador.estadisticas["Partidas perdidas"])
         print("Racha:", self.wordle.jugador.estadisticas["Racha"])
-        self.salir()
-        """"
-        opcion = str(input("¿Deseas volver a jugar? Sí(s), No(n):"))
-        if opcion == "s":
-            self.iniciar_juego()
-        else:
+        opciones = str(input("¿Deseas volver a jugar? Sí(s), No(n):"))
+        if opciones == "s":
+            self.ejecutar_app()
+        elif opciones == "n":
             self.salir()
-        """
+
 
     def ejecutar_app(self):
         print("WORDLE")
@@ -78,7 +82,3 @@ class UIConsola:
             else:
                 print(f"{opcion} no es una opción válida")
 
-    @staticmethod
-    def salir():
-        print("Gracias por jugar, ¡vuelve pronto!")
-        sys.exit(0)

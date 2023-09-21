@@ -1,7 +1,9 @@
 import random
 from typing import Union
 
-PALABRAS: list[str] = ["piton", "comer", "trata", "zarza", "camus", "cello", "lapiz", "diera", "zarpa"]
+PALABRAS: list[str] = ["piton", "comer", "trata", "zarza", "camus", "cello", "lapiz", "diera", "zarpa", "mango",
+                       "cebra", "mansa", "perro", "trenz", "calar", "largo", "tiara", "azote", "cacao", "lucha",
+                       "trama", "coche", "grifo", "barco"]
 
 
 class PalabraOculta:
