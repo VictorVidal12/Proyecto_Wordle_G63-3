@@ -8,7 +8,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | Inicia el juego generando una palabra aleatoria de cinco letras                                                                                            |
 | Entradas  |                                                                                                                                                            |
-| Resultado | 1 El sistema inicia el juego<br/> 2. Se registra el jugador con su nombre <br/> 2 El sistema muestra la opción de ver las instrucciones del juego <br/> 3 El sistema muestra la opción de ver las estadisticas del juego<br/> 4 Se genera una palabra oculta aleatoria de cinco letras <br/>5 Se ejecuta el requisito R2 (Turno jugador) |
+| Resultado | 1 El sistema inicia el juego<br/> 2 Se registra el jugador con su nombre <br/> 2 El sistema muestra la opción de ver las instrucciones del juego <br/> 3 El sistema muestra la opción de ver las estadisticas del juego<br/> 4 Se genera una palabra oculta aleatoria de cinco letras <br/>5 Se ejecuta el requisito R2 (Turno jugador) |
 
 |Pasos|Métodos|Responsable|
 |---|---|---|
@@ -20,7 +20,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El jugador inicia su jugada, donde debe adivinar la palabra oculta                                                                                                                                                                                   |
 | Entradas  |                                                                                                                                                                                                                                          |
-| Resultado | 1. El jugador ingresa una palabra de 5 letras<br/>2. la partida se suma a partidas jugadas en las estadísticas del juego<br/> 3. se ejecuta el requisito R3 (Gestionar intentos) |
+| Resultado | 1 El jugador ingresa una palabra de 5 letras<br/>2 la partida se suma a partidas jugadas en las estadísticas del juego<br/> 3 se ejecuta el requisito R3 (Gestionar intentos) |
 
 |Pasos|Métodos|Responsable|
 |---|---|---|
@@ -45,7 +45,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | Se determina si la palabra ingresada es válida                                                                                                                                                                                                                                                                                                                                                |
 | Entradas  | Palabra ingresada por el jugador                                                                                                                                                                                                                                                                                                                                                              |
-| Resultado | 1.Se verifica que la palabra ingresada esté registrada en la base de datos<br/>2. Si la palabra está registrada en la base de datos <br/>2.1 se verifica si es igual a la generada por el sistema o si es diferente. <br/>2.1.1 Si la palabra es igual se ejecuta el requisito R6 (Mostrar resultados) <br/> 2.1.2 Si la palabra es distinta se ejecuta el requisito R5 (retroalimentar) |
+| Resultado | 1 Se verifica que la palabra ingresada esté registrada en la base de datos<br/>2 Si la palabra está registrada en la base de datos <br/>2.1 se verifica si es igual a la generada por el sistema o si es diferente. <br/>2.1.1 Si la palabra es igual se ejecuta el requisito R6 (Mostrar resultados) <br/> 2.1.2 Si la palabra es distinta se ejecuta el requisito R5 (retroalimentar) |
 
 | Pasos             | Métodos                                  | Responsable |
 |-------------------|------------------------------------------|-------------|
@@ -56,7 +56,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | Se retroalimenta la palabra ingresada por el jugador según si adivino las letras correctas y están en la posición correcta, las adivinó y no se encuentran en la posición correcta o si las letras no hacen parte de la palabra oculta                                                                                                         |
 | Entradas  | Palabra ingresada por el jugador                                                                                                                                                                                                                                                                                                             |
-| Resultado |  1. las letras correctas en la posición correcta se marcan de verde<br/> 2. Las letras correctas en la posición incorrecta se marcan de amarillo. <br/> 3. Las letras que no se encuentran en la palabra oculta se marcan de gris. <br/> 4. se guardan los resultados de la retroalimentacion en la distribucion de intentos <br/> 5. Se ejecuta el requisito R3 (Gestionar intentos)|
+| Resultado |  1 las letras correctas en la posición correcta se marcan de verde<br/> 2 Las letras correctas en la posición incorrecta se marcan de amarillo. <br/> 3 Las letras que no se encuentran en la palabra oculta se marcan de gris. <br/> 4 se guardan los resultados de la retroalimentacion en la distribucion de intentos <br/> 5. Se ejecuta el requisito R3 (Gestionar intentos)|
 
 | Pasos             | Métodos                         | Responsable |
 |-------------------|---------------------------------|-------------|
@@ -68,7 +68,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El sistema  determina los resultados del juego                                                                                                                                                                                                                                    |
 | Entradas  |                                                                                                                                                                                                                                                                                   |
-| Resultado | 1 Si se adivina la palabra antes de que se acaben los intentos se mostrará un mensaje de victoria <br/> 1.1 y se suma una partida ganada <br/> 2. Si no llega antes de los 6 intentos se muestra un mensaje de derrota <br/> 2.1 se revela la palabra oculta <br/> 2.2 y se suma una partida perdida <br/> 3 Se ejecuta el requisito R6 (Finalizar el juego) |
+| Resultado | 1 Si se adivina la palabra antes de que se acaben los intentos se mostrará un mensaje de victoria <br/> 1.1 y se suma una partida ganada <br/> 2 Si no llega antes de los 6 intentos se muestra un mensaje de derrota <br/> 2.1 se revela la palabra oculta <br/> 2.2 y se suma una partida perdida <br/> 3 Se ejecuta el requisito R6 (Finalizar el juego) |
 
 | Pasos           | Métodos                                   | Responsable |
 |-----------------|-------------------------------------------|-------------|
@@ -80,7 +80,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El sistema  finaliza el juego                                                                                                                                                                                                                                                          |
 | Entradas  |                                                                                                                                                                                                                                                                                        |
-| Resultado | 1. Aparece el menú final <br/>1.1 Se muestra el significado de la palabra independientemente de si el jugador ganó o no <br/>1.2. Se muestra la opción de iniciar un nuevo juego. <br/> 1.3 <br/> Se muestra la opción de salir del juego <br/> 1.4 Se muestra la opción de ver las estadísticas de las partidas jugadas |
+| Resultado | 1 Aparece el menú final <br/>1.1 Se muestra el significado de la palabra independientemente de si el jugador ganó o no <br/>1.2. Se muestra la opción de iniciar un nuevo juego. <br/> 1.3 <br/> Se muestra la opción de salir del juego <br/> 1.4 Se muestra la opción de ver las estadísticas de las partidas jugadas |
 
 | Pasos                             | Métodos                      | Responsable |
 |-----------------------------------|------------------------------|-------------|
