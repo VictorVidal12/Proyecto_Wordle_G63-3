@@ -18,7 +18,7 @@ El juego de Wordle consiste en un programa ...
 
 | Nombre    | R2: Turno jugador                                                                                                                                                                                                                                                   |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Resumen   | El jugador inicia su jugada, donde debe adivinar la palabra oculta                                                                                                                                                                                   |
+| Resumen   | El jugador hace su jugada, donde debe adivinar la palabra oculta                                                                                                                                                                                   |
 | Entradas  |                                                                                                                                                                                                                                          |
 | Resultado | 1 El jugador ingresa una palabra de 5 letras<br/>2 la partida se suma a partidas jugadas en las estadísticas del juego<br/> 3 se ejecuta el requisito R3 (Gestionar intentos) |
 
