@@ -77,6 +77,7 @@ El juego de Wordle consiste en un programa ...
 | Sumar partidas perdidas | actualizar_estadisticas(palabra_intento: str)| Wordle    |
 | Sumar partidas ganadas | actualizar_estadisticas(palabra_intento: str)| Wordle    |
 
+
 | Nombre    | R7: Finalizar juego                                                                                                                                                                                                                                                                    |
 |-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El sistema  finaliza el juego                                                                                                                                                                                                                                                          |
@@ -85,7 +86,7 @@ El juego de Wordle consiste en un programa ...
 
 | Pasos                             | Métodos                      | Responsable |
 |-----------------------------------|------------------------------|-------------|
-| Mostrar significado de la palabra | significado_palabra(palabra) | Wordle      |
+| Mostrar significado de la palabra | significado_palabra(palabra_oculta) | Wordle      |
 | Mostrar estadísticas              | mostrar_estadisticas(bool)   | Wordle      |
 | Mostrar menú final              | mostrar_menu_final()   | Wordle      |
 |Finalizar juego| salir(bool)| Wordle      |
