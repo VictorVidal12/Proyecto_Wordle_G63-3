@@ -12,6 +12,7 @@ El juego de Wordle consiste en un programa ...
 
 |Pasos|Métodos|Responsable|
 |---|---|---|
+|Registrar jugador| registrar_jugador()|Wordle|
 |Iniciar juego| iniciar_juego()->bool|Wordle|
 |Mostrar instrucciones| instrucciones(bool)| Wordle|
 |Generar palabra oculta|palabra_oculta()|PalabraOculta|
@@ -68,7 +69,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El sistema  determina los resultados del juego                                                                                                                                                                                                                                    |
 | Entradas  |                                                                                                                                                                                                                                                                                   |
-| Resultado | 1 Si se adivina la palabra antes de que se acaben los intentos se mostrará un mensaje de victoria <br/> 1.1 y se suma una partida ganada <br/> 2 Si no llega antes de los 6 intentos se muestra un mensaje de derrota <br/> 2.1 se revela la palabra oculta <br/> 2.2 y se suma una partida perdida <br/> 3 Se ejecuta el requisito R6 (Finalizar el juego) |
+| Resultado | 1 Si se adivina la palabra antes de que se acaben los intentos se mostrará un mensaje de victoria <br/> 1.1 se suma una partida ganada <br/> 1.2 y la racha suma uno <br/> 2 Si no llega antes de los 6 intentos se muestra un mensaje de derrota <br/> 2.1 se revela la palabra oculta <br/> 2.2 se suma una partida perdida <br/>2.3 y la racha queda en 0 <br/> 3 Se ejecuta el requisito R6 (Finalizar el juego) |
 
 | Pasos           | Métodos                                   | Responsable |
 |-----------------|-------------------------------------------|-------------|
@@ -86,7 +87,8 @@ El juego de Wordle consiste en un programa ...
 |-----------------------------------|------------------------------|-------------|
 | Mostrar significado de la palabra | significado_palabra(palabra) | Wordle      |
 | Mostrar estadísticas              | mostrar_estadisticas(bool)   | Wordle      |
-|Finalizar juego| finalizar_juego(bool)| Wordle      |
+| Mostrar menú final              | mostrar_menu_final()   | Wordle      |
+|Finalizar juego| salir(bool)| Wordle      |
 
 # Modelo del mundo del problema (UML)
 
