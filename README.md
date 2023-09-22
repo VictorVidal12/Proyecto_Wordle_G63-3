@@ -17,10 +17,10 @@ El juego de Wordle consiste en un programa ...
 |Mostrar instrucciones| instrucciones(bool)| Wordle|
 |Generar palabra oculta|palabra_oculta()|PalabraOculta|
 
-| Nombre    | R2: Iniciar turno jugador                                                                                                                                                                                                                                                   |
+| Nombre    | R2: Ingresar palabra                                                                                                                                                                                                                                                   |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El jugador hace su jugada, donde debe adivinar la palabra oculta                                                                                                                                                                                   |
-| Entradas  |                                                                                                                                                                                                                                          |
+| Entradas  | Palabra ingresada por el jugador                                                                                                                                                                                                                                         |
 | Resultado | 1 El jugador ingresa una palabra de 5 letras<br/>2 la partida se suma a partidas jugadas en las estadísticas del juego<br/> 3 se ejecuta el requisito R3 (Gestionar intentos) |
 
 |Pasos|Métodos|Responsable|
