@@ -1,6 +1,9 @@
 # Proyecto_Wordle_G63-3
 
 El juego de Wordle consiste en un programa ...
+# Prototipo
+
+https://www.figma.com/proto/fI06NkyY1qP9jk2nMZlaAr/Wordle_G3-3?type=design&node-id=3-38&t=NXi9QRuyWQsNyfQ3-1&scaling=scale-down&page-id=0%3A1&starting-point-node-id=4%3A2972&show-proto-sidebar=1&mode=design
 
 # Requisitos Funcionales
 
