@@ -17,7 +17,7 @@ El juego de Wordle consiste en un programa ...
 |Mostrar instrucciones| instrucciones(bool)| Wordle|
 |Generar palabra oculta|palabra_oculta()|PalabraOculta|
 
-| Nombre    | R2: Turno jugador                                                                                                                                                                                                                                                   |
+| Nombre    | R2: Realizar turno jugador                                                                                                                                                                                                                                                   |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El jugador hace su jugada, donde debe adivinar la palabra oculta                                                                                                                                                                                   |
 | Entradas  |                                                                                                                                                                                                                                          |
