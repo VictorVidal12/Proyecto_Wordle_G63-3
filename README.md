@@ -92,5 +92,6 @@ El juego de Wordle consiste en un programa ...
 |Finalizar juego| salir(bool)| Wordle      |
 
 # Modelo del mundo del problema (UML)
+![Diagrama de clases Wordle G63-3 (2)](https://github.com/VictorVidal12/Proyecto_Wordle_G63-3/assets/110042484/c80c5d87-a36d-43a4-a098-cd20da8cc735)
 
-![UML](https://app.diagrams.net/#G10ySx3OVobGPoSypkRZFwtQrErrMKZHTe)
+
