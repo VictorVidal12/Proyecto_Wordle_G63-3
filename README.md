@@ -61,7 +61,7 @@ El juego de Wordle consiste en un programa ...
 
 | Pasos             | Métodos                         | Responsable |
 |-------------------|---------------------------------|-------------|
-| Retroalimentar    | retroalimentar(palabra_intento) | Palabra     |
+| Retroalimentar    | retroalimentar(palabra_intento) | PalabraOculta     |
 | resultados del intento    | actualizar_estadisticas(palabra_intento) | Wordle     |
 
 
