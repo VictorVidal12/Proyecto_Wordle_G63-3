@@ -32,7 +32,7 @@ El juego de Wordle consiste en un programa ...
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Resumen   | El sistema gestiona los intentos del jugador, esto determina si el juego continúa o no                                                                                                                                                                                    |
 | Entradas  | Palabra ingresada por el jugador                                                                                                                                                                                                                                          |
-| Resultado | 1 Se suma el intento realizado a estadísticas del juego<br/> 2 se muestran los intentos realizados <br/> 3 Si la cantidad de intentos es mayor a 6 <br/>3.1 se ejecuta el requisito R6 (Mostrar resultados) </br/4.> 4 Si no, se ejecuta el requisito R4 (Verificar palabra |
+| Resultado | 1 Se suma el intento realizado a estadísticas del juego<br/> 2 se muestran los intentos realizados <br/> 3 Si la cantidad de intentos es mayor a 6 <br/>3.1 se ejecuta el requisito R6 (Mostrar resultados) </br/> 4 Si no, se ejecuta el requisito R4 (Verificar palabra |
 
 
 | Pasos          | Métodos             | Responsable |
