@@ -1,5 +1,5 @@
 import sys
-from wordle.logica.Codigo import Wordle
+from wordle.logica.Codigo import Wordle, PalabraOculta
 
 
 class UIConsola:
@@ -31,9 +31,14 @@ class UIConsola:
         nombre = input("Escribe tu nombre: ")
         self.wordle = Wordle(nombre=nombre)
 
+    def reiniciar_juego(self):
+        self.wordle.jugador.intentos = 0
+        self.wordle.palabraoculta = PalabraOculta()
+        self.iniciar_juego()
+
     def iniciar_juego(self):
         while self.wordle.jugador.intentos < 6:
-            palabra_intento = input(f"\nIntentos: {self.wordle.jugador.intentos}\nIngresa tu intento: ").lower()
+            palabra_intento = input(f"\nIntento #{self.wordle.jugador.intentos + 1}\nIngresa tu intento: ").lower()
 
             if not self.wordle.palabraoculta.verificar_palabra(palabra_intento):
                 print(f"La palabra {palabra_intento} no es válida.")
@@ -48,7 +53,6 @@ class UIConsola:
                 print(f"\n¡Felicidades! Has adivinado la palabra secreta: {self.wordle.palabraoculta.palabra_oculta}")
                 self.wordle.actualizar_estadisticas(palabra_intento)
                 self.mostrar_menu_final()
-
                 break
 
         if self.wordle.jugador.intentos == 6:
@@ -62,12 +66,11 @@ class UIConsola:
         print("Partidas ganadas:", self.wordle.jugador.estadisticas["Partidas ganadas"])
         print("Partidas perdidas:", self.wordle.jugador.estadisticas["Partidas perdidas"])
         print("Racha:", self.wordle.jugador.estadisticas["Racha"])
-        opciones = str(input("¿Deseas volver a jugar? Sí(s), No(n):"))
+        opciones = str(input("¿Deseas volver a jugar? Sí(s), No(n): "))
         if opciones == "s":
-            self.ejecutar_app()
+            self.reiniciar_juego()
         elif opciones == "n":
             self.salir()
-
 
     def ejecutar_app(self):
         print("WORDLE")
@@ -81,4 +84,3 @@ class UIConsola:
                 accion()
             else:
                 print(f"{opcion} no es una opción válida")
-
