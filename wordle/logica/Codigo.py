@@ -11,13 +11,13 @@ class PalabraOculta:
         self.palabra_oculta: str = PALABRAS[random.randint(0, len(PALABRAS) - 1)]
 
     @staticmethod
-    def verificar_palabra(palabra_intento: str):
+    def verificar_palabra(palabra_intento: str) -> bool:
         if palabra_intento in PALABRAS:
             return True
         else:
             return False
 
-    def comparar_palabras(self, palabra_intento: str):
+    def comparar_palabras(self, palabra_intento: str) -> bool:
         if palabra_intento == self.palabra_oculta:
             return True
         else:
