@@ -65,7 +65,8 @@ class UIConsola:
         print("Partidas jugadas:", self.wordle.jugador.estadisticas["Partidas jugadas"])
         print("Partidas ganadas:", self.wordle.jugador.estadisticas["Partidas ganadas"])
         print("Partidas perdidas:", self.wordle.jugador.estadisticas["Partidas perdidas"])
-        print("Racha:", self.wordle.jugador.estadisticas["Racha"])
+        print("Racha actual:", self.wordle.jugador.estadisticas["Racha"])
+        print("Mejor racha:", self.wordle.jugador.estadisticas["Mejor racha"])
         opciones = str(input("¿Deseas volver a jugar? Sí(s), No(n): "))
         if opciones == "s":
             self.reiniciar_juego()
