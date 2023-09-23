@@ -41,7 +41,8 @@ class Jugador:
         self.nombre: str = nombre
         self.intentos: int = 0
         self.estadisticas: dict[str, int] = {"Partidas ganadas": 0, "Partidas perdidas": 0, "Partidas jugadas": 0,
-                                             "Racha": 0, "Mejor racha": 0}
+                                             "Racha": 0, "Mejor racha": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0,
+                                             "6": 0}
 
     def intento_realizado(self):
         self.intentos += 1
@@ -70,7 +71,7 @@ class Wordle:
 
     def actualizar_estadisticas(self, palabra_intento: str):
         if self.jugador_gano(palabra_intento):
-            # self.jugador.estadisticas[str(self.jugador.intentos)] += 1
+            self.jugador.estadisticas[str(self.jugador.intentos)] += 1
             self.jugador.estadisticas["Partidas ganadas"] += 1
             self.jugador.estadisticas["Racha"] += 1
             self.jugador.estadisticas["Partidas jugadas"] += 1

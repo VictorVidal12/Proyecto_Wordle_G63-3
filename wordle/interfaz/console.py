@@ -12,7 +12,7 @@ class UIConsola:
 
     @staticmethod
     def instrucciones():
-        print("El juego consiste en tratar de adivinar la palabra de 5 letras en 5 intentos.")
+        print("El juego consiste en tratar de adivinar la palabra de 5 letras en 6 intentos.")
         print("Solo serán válidas palabras que se encuentren en nuestra base de datos.")
         print("Si ingresas una palabra que no es correcta el juego te retroalimentará.")
 
@@ -21,6 +21,7 @@ class UIConsola:
         print("\n----- MENU -----")
         print("1. Iniciar nuevo juego")
         print("0. Salir")
+        print("----------------")
 
     @staticmethod
     def salir():
@@ -67,6 +68,14 @@ class UIConsola:
         print("Partidas perdidas:", self.wordle.jugador.estadisticas["Partidas perdidas"])
         print("Racha actual:", self.wordle.jugador.estadisticas["Racha"])
         print("Mejor racha:", self.wordle.jugador.estadisticas["Mejor racha"])
+        print("Partidas ganadas por intentos:")
+        print("#1:", self.wordle.jugador.estadisticas["1"])
+        print("#2:", self.wordle.jugador.estadisticas["2"])
+        print("#3:", self.wordle.jugador.estadisticas["3"])
+        print("#4:", self.wordle.jugador.estadisticas["4"])
+        print("#5:", self.wordle.jugador.estadisticas["5"])
+        print("#6:", self.wordle.jugador.estadisticas["6"])
+
         opciones = str(input("¿Deseas volver a jugar? Sí(s), No(n): "))
         if opciones == "s":
             self.reiniciar_juego()
@@ -74,9 +83,10 @@ class UIConsola:
             self.salir()
 
     def ejecutar_app(self):
-        print("WORDLE")
+        print("-----WORDLE-----")
         self.registrar_jugador()
         while True:
+            print("\n----------------")
             self.instrucciones()
             self.mostrar_menu()
             opcion = input("Seleccione una opción: ")
