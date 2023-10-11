@@ -1,3 +1,89 @@
-.bg-body-tertiary {
-    background-color: red; /* Reemplaza #RRGGBB con el código de color deseado */
+.background-dark {
+  background-color: #333;
+  padding: 20px;
+  color: white;
 }
+
+
+.navbar {
+    background-color: #FF4E4E;
+}
+
+.btn-tall {
+        height: 60px;
+        width: 60px;
+        margin-left: 10px;
+        margin-right: 20px
+    }
+
+ .btn{
+   display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+
+.button{
+    background-color: #FF4E4E;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-container{
+    background-color: #FF4E4E;
+    width: 46px;
+    height: 46px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.container-fluid{
+
+}
+
+.row{
+        margin-bottom: 1px;
+        max-width: 100px>
+        margin-left:50px
+}
+
+.casilla {
+    width: 50px;
+    height: 50px;
+    border-radius: 11px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.37em;
+    font-weight: bold;
+    color: white;
+    background-color:#3F4045
+}
+
+
+.teclado .row {
+  display: flex;
+  justify-content: center;
+}
+
+.teclado .btn{
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 8px;
+    background-color: #7F7F81 ;
+
+}
+
+.teclado .btn-tall {
+        height: 42px;
+        width: 42px;
+
+    }
+
+
+.teclado h3 {
+    color: white;
+}
+
+
