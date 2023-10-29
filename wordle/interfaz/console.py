@@ -1,5 +1,5 @@
 import sys
-from wordle.logica.Codigo import Wordle, PalabraOculta
+from wordle.logica.Codigo import Wordle
 
 
 class UIConsola:
@@ -34,7 +34,7 @@ class UIConsola:
 
     def reiniciar_juego(self):
         self.wordle.jugador.intentos = 0
-        self.wordle.palabraoculta = PalabraOculta()
+        self.wordle.palabraoculta = self.wordle.PalabraOculta()
         self.iniciar_juego()
 
     def iniciar_juego(self):

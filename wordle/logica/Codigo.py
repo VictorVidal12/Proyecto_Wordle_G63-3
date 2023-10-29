@@ -11,6 +11,8 @@ class PalabraOculta:
         self.palabra_oculta: str = PALABRAS[random.randint(0, len(PALABRAS) - 1)]
 
     @staticmethod
+    def verificar_palabra():
+        return Jugador.ingresar_palabra in PALABRAS
     def verificar_palabra(palabra_intento: str) -> bool:
         if palabra_intento in PALABRAS:
             return True
@@ -25,6 +27,14 @@ class PalabraOculta:
 
     def retroalimentar(self, palabra_intento: str):
         retroalimentacion = ""
+        for i in range(len(self.palabra_oculta)):
+            if palabra_intento[i] == self.palabra_oculta[i]:
+                retroalimentacion += "\033[92m" + palabra_intento[i] + "\033[0m "  # Verde
+            elif palabra_intento[i] in self.palabra_oculta:
+                retroalimentacion += "\033[93m" + palabra_intento[i] + "\033[0m "  # Amarillo
+            else:
+                retroalimentacion += "\033[90m" + palabra_intento[i] + "\033[0m "  # Gris
+        print(retroalimentacion)
         if not self.comparar_palabras(palabra_intento):
             for i in range(len(self.palabra_oculta)):
                 if palabra_intento[i] == self.palabra_oculta[i]:
