@@ -76,8 +76,15 @@
         height: 42px;
         width: 42px;
     }
+
+
 .teclado h3 {
     color: white;
+}
+
+.btn-custom{
+    width:100px;
+    height: 42px;
 }
 
 
