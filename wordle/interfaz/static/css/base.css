@@ -7,6 +7,7 @@
 
 .navbar {
     background-color: #FF4E4E;
+    width: 100%;
 }
 
 .btn-tall {
@@ -34,13 +35,10 @@
     background-color: #FF4E4E;
     width: 46px;
     height: 46px;
-    background-color: red;
+    background-color: #FF4E4E;
     border-radius: 50%;
 }
 
-.container-fluid{
-
-}
 
 .row{
         margin-bottom: 1px;
@@ -72,18 +70,60 @@
     background-color: white;
     border-radius: 8px;
     background-color: #7F7F81 ;
-
 }
 
 .teclado .btn-tall {
         height: 42px;
         width: 42px;
-
     }
-
-
 .teclado h3 {
     color: white;
 }
+
+
+
+
+
+/* registro */
+
+.navbar-custom {
+    background-color: #FF4E4E;
+    height: 100px;
+    margin-bottom: 50px
+}
+
+.custom-container {
+  width: 20%;
+  margin: 0 auto;
+  margin-top: 65px;
+  text-align: center;
+  color: #FF4E4E;
+
+}
+
+.usuario{
+     margin-bottom: 110px;
+     color: white;
+}
+
+
+.nombre{
+    height: 40px;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 30px;
+    background-color: #7F7F81;
+    color:white;
+}
+
+.iniciar{
+    background-color: #FF4E4E;
+    height: 40px;
+    border-radius: 8px;
+    width: 100%;
+    color:white;
+
+}
+
 
 
