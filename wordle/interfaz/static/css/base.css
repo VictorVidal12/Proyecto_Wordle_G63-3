@@ -4,6 +4,10 @@
   color: white;
 }
 
+.container-fluid{
+    margin-top: -8px;
+}
+
 
 .navbar {
     background-color: #FF4E4E;
