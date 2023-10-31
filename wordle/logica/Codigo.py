@@ -1,9 +1,26 @@
+import ast
 import random
+import requests
 from typing import Union
 
-PALABRAS: list[str] = ["piton", "comer", "trata", "zarza", "camus", "cello", "lapiz", "diera", "zarpa", "mango",
-                       "cebra", "mansa", "perro", "trenz", "calar", "largo", "tiara", "azote", "cacao", "lucha",
-                       "trama", "coche", "grifo", "barco"]
+
+# Uso de la api para obtener las palabras
+def palabra_aleatoria():
+    palabras_wordle: list[str] = []
+    for i in range(10000):
+        api_url: str = 'https://api.api-ninjas.com/v1/randomword'
+        response = requests.get(api_url, headers={'X-Api-Key': '74w5GflDZj4lbxnx3l7Lrg==129rRPt1vTEb5hdg'})
+        plb_temp = response.text
+        plb = ast.literal_eval(plb_temp)
+        if len(plb['word']) == 5:
+            palabras_wordle.append(plb['word'])
+    return palabras_wordle
+
+
+PALABRAS: list[str] = palabra_aleatoria()
+print(PALABRAS)
+
+PALABRAS: list[str] = []
 
 
 class PalabraOculta:
@@ -12,12 +29,8 @@ class PalabraOculta:
 
     @staticmethod
     def verificar_palabra():
-        return Jugador.ingresar_palabra in PALABRAS
-    def verificar_palabra(palabra_intento: str) -> bool:
-        if palabra_intento in PALABRAS:
-            return True
-        else:
-            return False
+        pass
+        # return Jugador.ingresar_palabra in PALABRAS
 
     def comparar_palabras(self, palabra_intento: str) -> bool:
         if palabra_intento == self.palabra_oculta:
@@ -45,6 +58,10 @@ class PalabraOculta:
                     retroalimentacion += "\033[90m" + palabra_intento[i] + "\033[0m "  # Gris
             print(retroalimentacion)
 
+    def significado(self):
+        # Este método va a manejar el significado de la palabra oculta
+        pass
+
 
 class Jugador:
     def __init__(self, nombre: str):
@@ -58,7 +75,7 @@ class Jugador:
         self.intentos += 1
 
     def ingresar_palabra(self, palabra_intento: str) -> Union[str, bool]:
-        if PalabraOculta.verificar_palabra(palabra_intento):
+        if PalabraOculta.verificar_palabra():
             self.intento_realizado()
             return palabra_intento
         else:
