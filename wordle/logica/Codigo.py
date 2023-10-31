@@ -2,25 +2,19 @@ import ast
 import random
 import requests
 from typing import Union
+from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
 
 
 # Uso de la api para obtener las palabras
 def palabra_aleatoria():
-    palabras_wordle: list[str] = []
-    for i in range(10000):
-        api_url: str = 'https://api.api-ninjas.com/v1/randomword'
-        response = requests.get(api_url, headers={'X-Api-Key': '74w5GflDZj4lbxnx3l7Lrg==129rRPt1vTEb5hdg'})
-        plb_temp = response.text
-        plb = ast.literal_eval(plb_temp)
-        if len(plb['word']) == 5:
-            palabras_wordle.append(plb['word'])
+    api_url = 'https://api.api-ninjas.com/v1/randomword'
+    palabras_wordle = [plb['word'] for _ in range(50) if (
+        response := requests.get(api_url, headers={'X-Api-Key': '74w5GflDZj4lbxnx3l7Lrg==129rRPt1vTEb5hdg'})) and (
+                           plb := ast.literal_eval(response.text)) and len(plb['word']) == 5]
     return palabras_wordle
 
 
 PALABRAS: list[str] = palabra_aleatoria()
-print(PALABRAS)
-
-PALABRAS: list[str] = []
 
 
 class PalabraOculta:
@@ -29,14 +23,10 @@ class PalabraOculta:
 
     @staticmethod
     def verificar_palabra():
-        pass
-        # return Jugador.ingresar_palabra in PALABRAS
+        return Jugador.ingresar_palabra in PALABRAS
 
     def comparar_palabras(self, palabra_intento: str) -> bool:
-        if palabra_intento == self.palabra_oculta:
-            return True
-        else:
-            return False
+        return palabra_intento == self.palabra_oculta
 
     def retroalimentar(self, palabra_intento: str):
         retroalimentacion = ""
