@@ -16,7 +16,6 @@ def palabra_aleatoria():
 
 PALABRAS: list[str] = palabra_aleatoria()
 
-
 class PalabraOculta:
     def __init__(self):
         self.palabra_oculta: str = PALABRAS[random.randint(0, len(PALABRAS) - 1)]
@@ -49,8 +48,10 @@ class PalabraOculta:
             print(retroalimentacion)
 
     def significado(self):
-        # Este método va a manejar el significado de la palabra oculta
-        pass
+        api_url = 'https://api.api-ninjas.com/v1/dictionary?word={}'.format(self.palabra_oculta)
+        response = requests.get(api_url, headers={'X-Api-Key': '74w5GflDZj4lbxnx3l7Lrg==129rRPt1vTEb5hdg'})
+        significado = ast.literal_eval(response.text)
+        return significado['definition']
 
 
 class Jugador:
