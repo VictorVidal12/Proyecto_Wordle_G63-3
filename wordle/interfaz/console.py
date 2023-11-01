@@ -40,6 +40,10 @@ class UIConsola:
     def iniciar_juego(self):
         while self.wordle.jugador.intentos < 6:
             palabra_intento = input(f"\nIntento #{self.wordle.jugador.intentos + 1}\nIngresa tu intento: ").lower()
+            try:
+                palabra_intento = input(f"\nIntento #{self.wordle.jugador.intentos + 1}\nIngresa tu intento: ").lower()
+            except ValueError:
+                pass
 
             if not self.wordle.palabraoculta.verificar_palabra(palabra_intento):
                 print(f"La palabra {palabra_intento} no es válida.")
