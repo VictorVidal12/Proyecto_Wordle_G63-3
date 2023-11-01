@@ -1,28 +1,25 @@
-import ast
 import random
-import requests
 from typing import Union
-from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
+#from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
+import requests
+import ast
 
-
-# Uso de la api para obtener las palabras
-def palabra_aleatoria():
-    api_url = 'https://api.api-ninjas.com/v1/randomword'
-    palabras_wordle = [plb['word'] for _ in range(50) if (
-        response := requests.get(api_url, headers={'X-Api-Key': '74w5GflDZj4lbxnx3l7Lrg==129rRPt1vTEb5hdg'})) and (
-                           plb := ast.literal_eval(response.text)) and len(plb['word']) == 5]
-    return palabras_wordle
-
-
-PALABRAS: list[str] = palabra_aleatoria()
+lista_de_palabras: list[str] = []
+with open("palabras.txt", "r") as plb:
+    linea = plb.readline()
+    while linea != '':
+        lista_de_palabras.append(linea.lower())
+# tiene el error de que no encuentra el archivo palabras.txt
 
 class PalabraOculta:
     def __init__(self):
-        self.palabra_oculta: str = PALABRAS[random.randint(0, len(PALABRAS) - 1)]
+        self.palabra_oculta: str = lista_de_palabras[random.randint(0, len(lista_de_palabras) - 1)]
 
+    def actualizar_lista(self):
+        return lista_de_palabras.remove(self.palabra_oculta)
     @staticmethod
     def verificar_palabra():
-        return Jugador.ingresar_palabra in PALABRAS
+        return Jugador.ingresar_palabra in lista_de_palabras
 
     def comparar_palabras(self, palabra_intento: str) -> bool:
         return palabra_intento == self.palabra_oculta
