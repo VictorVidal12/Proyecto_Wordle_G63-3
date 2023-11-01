@@ -25,6 +25,7 @@
    display: flex;
   align-items: center;
   justify-content: center;
+
  }
 
 .button{
@@ -133,6 +134,7 @@
     border-radius: 8px;
     width: 100%;
     color:white;
+    text-decoration: none;
 
 }
 
