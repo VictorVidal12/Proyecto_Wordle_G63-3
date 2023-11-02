@@ -5,6 +5,7 @@ from wordle.interfaz.wordletk.Game import WordleGame
 
 if __name__ == "__main__":
     def iniciar_juego():
+        on_closing()
         ventana_2 = Tk()
         ventana_2.configure(bg="white")
         juego = WordleGame(ventana_2)
