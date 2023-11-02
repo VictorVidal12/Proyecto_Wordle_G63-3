@@ -1,14 +1,16 @@
 import random
 from typing import Union
-#from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
+# from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
 import requests
 import ast
 
 lista_de_palabras: list[str] = []
 with open("palabras.txt", "r") as plb:
     linea = plb.readline()
-    while linea != '':
+    while linea != ' ':
         lista_de_palabras.append(linea.lower())
+
+
 # tiene el error de que no encuentra el archivo palabras.txt
 
 class PalabraOculta:
@@ -17,6 +19,7 @@ class PalabraOculta:
 
     def actualizar_lista(self):
         return lista_de_palabras.remove(self.palabra_oculta)
+
     @staticmethod
     def verificar_palabra():
         return Jugador.ingresar_palabra in lista_de_palabras

@@ -45,7 +45,7 @@ class WordleGame:
         self.ventana.configure(bg="white")
         self.wordle = Wordle(nombre="")  # hay que hacer que reciba el nombre el login debería de hacerse en esta
         # misma código
-        self.wordle.palabraoculta = self.wordle.PalabraOculta() # no reconoce la clase PalabraOculta()
+        self.wordle.palabraoculta = self.wordle.PalabraOculta()  # no reconoce la clase PalabraOculta()
 
         for i in range(11):
             self.ventana.rowconfigure(i, weight=1)
