@@ -1,17 +1,29 @@
 import tkinter as tk
+from tkinter import Tk
+from wordle.interfaz.wordletk.Game import WordleGame
 
 
-def on_closing():
-    ventana.destroy()
+if __name__ == "__main__":
+    def iniciar_juego():
+        ventana_2 = Tk()
+        ventana_2.configure(bg="white")
+        juego = WordleGame(ventana_2)
+        ventana_2.mainloop()
 
 
-ventana = tk.Tk()
-ventana.geometry("500x500")
+    def on_closing():
+        ventana_1.destroy()
 
-label = tk.Label(ventana, text="¡Bienvenido a WORDLE!")  # Se debe agregar el boton para registro y que guarde el nombre
-label.pack(pady=100, padx=100)
 
-button = tk.Button(ventana, text="Cerrar", command=on_closing)
-button.pack()
+    ventana_1 = Tk()
+    ventana_1.geometry("500x500")
 
-ventana.mainloop()
+    label = tk.Label(ventana_1,
+                     text="¡Bienvenido a WORDLE!")  # Se debe agregar el boton para registro y que guarde el nombre
+    label.pack(pady=100, padx=100)
+    start_button = tk.Button(ventana_1, text="Iniciar Juego", command=iniciar_juego)
+    start_button.pack()
+    close_button = tk.Button(ventana_1, text="Cerrar", command=on_closing)
+    close_button.pack()
+
+    ventana_1.mainloop()

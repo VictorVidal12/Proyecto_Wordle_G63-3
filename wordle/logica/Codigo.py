@@ -7,8 +7,10 @@ import ast
 lista_de_palabras: list[str] = []
 with open("palabras.txt", "r") as plb:
     linea = plb.readline()
-    while linea != ' ':
+    while linea != '':
+        print(linea)
         lista_de_palabras.append(linea.lower())
+        linea = plb.readline()
 
 
 # tiene el error de que no encuentra el archivo palabras.txt
