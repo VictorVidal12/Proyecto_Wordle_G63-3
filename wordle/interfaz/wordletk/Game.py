@@ -52,8 +52,8 @@ class WordleGame:
         for j in range(5):
             self.ventana.columnconfigure(j, weight=1)
 
-        self.palabra_oculta = self.wordle.palabraoculta
-        self.tablero = Tablero(self.palabra_oculta)
+        self.palabraOculta = self.wordle.palabraoculta
+        self.tablero = Tablero(self.palabraOculta.palabra_oculta)
 
         self.etiqueta = Label(ventana, text="WORDLE", font=("Arial", 16))
         self.etiqueta.grid(row=0, column=0, columnspan=5, sticky="nsew")

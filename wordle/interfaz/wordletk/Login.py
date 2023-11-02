@@ -22,7 +22,7 @@ if __name__ == "__main__":
     label = tk.Label(ventana_1,
                      text="¡Bienvenido a WORDLE!")  # Se debe agregar el boton para registro y que guarde el nombre
     label.pack(pady=100, padx=100)
-    start_button = tk.Button(ventana_1, text="Iniciar Juego", command=iniciar_juego)
+    start_button = tk.Button(ventana_1, text="Iniciar juego", command=iniciar_juego)
     start_button.pack()
     close_button = tk.Button(ventana_1, text="Cerrar", command=on_closing)
     close_button.pack()
