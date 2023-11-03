@@ -98,8 +98,6 @@ class Game:
                 fila_labels.append(label)
             self.tablero_labels.append(fila_labels)
 
-
-
     def ingresar_palabra(self):
         palabra = self.entrada_palabra.get()
 
@@ -112,10 +110,10 @@ class Game:
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
 
-            if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.wordle.palabraoculta.palabra_oculta:
+            if self.wordle.jugador_gano(palabra):
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
                 self.wordle.actualizar_estadisticas(palabra)
-            elif self.tablero.num_intentos == 6:
+            elif self.wordle.jugador_perdio(palabra):
                 self.etiqueta_tablero.config(
                     text=f"¡Has perdido! \n La palabra correcta era: {self.wordle.palabraoculta.palabra_oculta}")
                 self.wordle.actualizar_estadisticas(palabra)
