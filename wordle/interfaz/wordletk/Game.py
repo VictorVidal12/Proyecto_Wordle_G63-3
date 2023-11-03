@@ -90,12 +90,12 @@ class WordleGame:
             self.etiqueta_error.config(text="")
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
-            if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabra_oculta:
+            if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabraOculta.palabra_oculta:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
-                guardar_resultado(self.palabra_oculta, palabra, "Victoria")
+                guardar_resultado(self.palabraOculta.palabra_oculta, palabra, "Victoria")
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
-                    text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabra_oculta}")
+                    text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabraOculta.palabra_oculta}")
         else:
             self.etiqueta_error.config(text="Por favor, ingresa una palabra válida")
 
@@ -106,9 +106,9 @@ class WordleGame:
                 label = self.tablero_labels[i][j]
                 if letra == "_":
                     label.config(text=letra, bg="white")
-                elif letra == self.palabra_oculta[j]:
+                elif letra == self.palabraOculta.palabra_oculta[j]:
                     label.config(text=letra, bg="green")
-                elif letra in self.palabra_oculta:
+                elif letra in self.palabraOculta.palabra_oculta:
                     label.config(text=letra, bg="yellow")
                 else:
                     label.config(text=letra, bg="white")

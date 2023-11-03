@@ -8,7 +8,6 @@ lista_de_palabras: list[str] = []
 with open("palabras.txt", "r") as plb:
     linea = plb.readline()
     while linea != '':
-        print(linea)
         lista_de_palabras.append(linea.lower())
         linea = plb.readline()
 
