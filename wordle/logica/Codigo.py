@@ -1,9 +1,7 @@
 import random
-from wordle.logica.palabras import get_randoms_words_with_meanings, get_random_word, get_word_definition
+from wordle.logica.palabras import get_randoms_words_with_meanings
 from typing import Union
-from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
-import requests
-import ast
+from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
 
 lista_de_palabras: list[str] = []
 random_words = get_randoms_words_with_meanings(5)
@@ -62,6 +60,7 @@ class Jugador:
         self.estadisticas: dict[str, int] = {"Partidas ganadas": 0, "Partidas perdidas": 0, "Partidas jugadas": 0,
                                              "Racha": 0, "Mejor racha": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0,
                                              "6": 0}
+
     def intento_realizado(self):
         self.intentos += 1
 

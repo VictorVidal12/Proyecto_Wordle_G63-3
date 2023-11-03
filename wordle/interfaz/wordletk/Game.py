@@ -1,12 +1,13 @@
-from tkinter import Tk, Button, Entry, Label, messagebox
+from tkinter import Tk, Button, Entry, Label
 from wordle.logica.Codigo import Wordle
+from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
 import matplotlib.pyplot as plt
 
 """
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
 creados en WordleErrors.
-También se debe de organizar la estética del programa, para que sea parecida a la 
-del prototipo
+
+También se debe de organizar la estética del programa
 """
 
 
@@ -76,6 +77,13 @@ class Game:
         self.etiqueta_tablero = Label(ventana, text="", font=("Arial", 16))
         self.etiqueta_tablero.grid(row=11, column=0, columnspan=5, sticky="nsew")
 
+        self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
+        self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
+
+        self.boton_significado = Button(ventana, text="Significado", command=self.palabraOculta.significado,
+                                        font=("Arial", 16))
+        self.boton_significado.grid(row=12, column=2, columnspan=5, sticky="nsew")
+
         self.tablero_labels = []
         for i in range(6):
             fila_labels = []
@@ -88,17 +96,24 @@ class Game:
 
     def ingresar_palabra(self):
         palabra = self.entrada_palabra.get()
-        if len(palabra) == 5 and palabra.isalpha() and palabra.islower():
+
+        try:
+            if len(palabra) != 5 or not palabra.isalpha() or not palabra.islower():
+                raise LenError("Por favor, ingresa una palabra valida")
+
             self.error.config(text="")
+
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
+
             if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabraOculta.palabra_oculta:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
                     text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabraOculta.palabra_oculta}")
-        else:
-            self.error.config(text="Por favor, ingresa una palabra válida")
+
+        except (LenError, InvalidWordError, NotFoundWordError) as e:
+            self.error.config(text=str(e))
 
     def actualizar_tablero(self):
         for i in range(6):
@@ -126,16 +141,9 @@ class Game:
         ax.barh(etiquetas, width=stats)
         plt.show()
 
-def guardar_resultado(palabra_correcta, palabra_ingresada, resultado):
-    with open("historial_juegos.txt", "a") as file:
-        file.write(
-            f"Palabra correcta: {palabra_correcta}, Palabra ingresada: {palabra_ingresada}, Resultado: {resultado}\n")
-
 
 if __name__ == "__main__":
     ventana = Tk()
     ventana.configure(bg="white")
     juego = Game(ventana)
-    juego.estadisticas()
-
     ventana.mainloop()
