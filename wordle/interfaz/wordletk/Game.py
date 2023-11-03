@@ -23,21 +23,23 @@ class Tablero(Tk):
         for i in range(6):
             self.matriz.append(["_" for _ in range(5)])
 
-    def actualizar_tablero(self, palabra):
+    def actualizar_tablero(self, palabra, wordle):
         if self.num_intentos < 6:
-            if palabra == self.palabra_oculta:
+            if palabra == wordle.palabraoculta.palabra_oculta:
                 for i, letra in enumerate(palabra):
-                    self.matriz[self.num_intentos][i] = letra
+                    self.matriz[wordle.jugador.intentos][i] = letra
+                wordle.jugador.intento_realizado()
                 self.num_intentos = 6
                 return
             else:
                 for i, letra in enumerate(palabra):
-                    if letra == self.palabra_oculta[i]:
-                        self.matriz[self.num_intentos][i] = letra
+                    if letra == wordle.palabra_oculta.palabraoculta[i]:
+                        self.matriz[wordle.jugador.intentos][i] = letra
                     elif letra in self.palabra_oculta:
-                        self.matriz[self.num_intentos][i] = letra.lower()
+                        self.matriz[wordle.jugador.intentos][i] = letra.lower()
                     else:
-                        self.matriz[self.num_intentos][i] = letra
+                        self.matriz[wordle.jugador.intentos][i] = letra
+                wordle.jugador.intento_realizado()
                 self.num_intentos += 1
 
 
@@ -48,7 +50,6 @@ class Game(Tk):
         self.ventana.title("Wordle")
         self.ventana.configure(bg="white")
         self.wordle = Wordle(nombre="")
-        self.wordle.jugador = self.wordle.jugador
 
         for i in range(11):
             self.ventana.rowconfigure(i, weight=1)
@@ -107,7 +108,7 @@ class Game(Tk):
 
             self.error.config(text="")
 
-            self.tablero.actualizar_tablero(palabra)
+            self.tablero.actualizar_tablero(palabra, self.wordle)
             self.actualizar_tablero()
 
             if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.wordle.palabraoculta.palabra_oculta:
