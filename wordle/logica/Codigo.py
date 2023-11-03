@@ -14,7 +14,6 @@ for key, value in random_words.items():
         continue
 
 
-# tiene el error de que no encuentra el archivo palabras.txt
 
 class PalabraOculta:
     def __init__(self):

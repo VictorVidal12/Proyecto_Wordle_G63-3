@@ -2,3 +2,4 @@ requests~=2.31.0
 flask~=3.0.0 (solo si se quiere revisar lo que se tenía de la app web)
 tk~=0.1.0
 Pillow~=10.1.0
+matplotlib~=3.8.1

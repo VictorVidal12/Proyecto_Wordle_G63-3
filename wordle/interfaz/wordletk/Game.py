@@ -67,9 +67,9 @@ class Game:
         self.entrada_palabra = Entry(ventana, font=("Arial", 12))
         self.entrada_palabra.grid(row=2, column=0, columnspan=5, sticky="nsew")
 
-        self.boton_adivinar = Button(ventana, text="Ingresar palabra", command=self.ingresar_palabra,
+        self.boton_ingresar = Button(ventana, text="Ingresar palabra", command=self.ingresar_palabra,
                                      font=("Arial", 12))
-        self.boton_adivinar.grid(row=3, column=0, columnspan=5, sticky="nsew")
+        self.boton_ingresar.grid(row=3, column=0, columnspan=5, sticky="nsew")
 
         self.error = Label(ventana, text="", fg="red", font=("Arial", 12))
         self.error.grid(row=4, column=0, columnspan=5, sticky="nsew")
