@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 """
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
 creados en WordleErrors.
-
 También se debe de organizar la estética del programa, para que sea parecida a la 
 del prototipo
 """
@@ -124,7 +123,7 @@ class Game:
         etiquetas: list[str] = ["Partidas ganadas", "Partidas perdidas", "Partidas Jugadas", "Racha Actual",
                                 "Mejor Racha"]
         fig, ax = plt.subplots()
-        ax.barh(x=etiquetas, y=stats)
+        ax.barh(etiquetas, widht = stats)
 
 
 if __name__ == "__main__":
