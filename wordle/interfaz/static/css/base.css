@@ -92,6 +92,15 @@
     height: 42px;
 }
 
+.modal-dialog{
+    background-color: "dark"
+    color: black;
+    width: 500px;
+    heigth: 500px;
+
+
+}
+
 
 
 

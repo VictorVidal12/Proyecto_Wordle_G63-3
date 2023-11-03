@@ -1,5 +1,7 @@
-from tkinter import Tk, Button, Entry, Label, messagebox
+from tkinter import Tk, Button, Entry, Label
+
 from wordle.logica.Codigo import Wordle
+from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
 
 """
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
@@ -35,7 +37,7 @@ class Tablero:
                         self.matriz[self.num_intentos][i] = letra.lower()
                     else:
                         self.matriz[self.num_intentos][i] = letra
-                self.num_intentos += 1
+                        self.num_intentos += 1
 
 
 class WordleGame:
@@ -86,18 +88,25 @@ class WordleGame:
 
     def adivinar_palabra(self):
         palabra = self.entrada_palabra.get()
-        if len(palabra) == 5 and palabra.isalpha() and palabra.islower():
+
+        try:
+            if len(palabra) != 5 or not palabra.isalpha() or not palabra.islower():
+                raise LenError("Por favor, ingresa una palabra valida")
+
             self.etiqueta_error.config(text="")
+
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
+
             if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabraOculta.palabra_oculta:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
                 guardar_resultado(self.palabraOculta.palabra_oculta, palabra, "Victoria")
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
                     text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabraOculta.palabra_oculta}")
-        else:
-            self.etiqueta_error.config(text="Por favor, ingresa una palabra válida")
+
+        except (LenError, InvalidWordError, NotFoundWordError) as e:
+            self.etiqueta_error.config(text=str(e))
 
     def actualizar_tablero(self):
         for i in range(6):
