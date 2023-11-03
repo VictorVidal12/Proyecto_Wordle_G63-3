@@ -84,6 +84,9 @@ class Game:
                                         font=("Arial", 16))
         self.boton_significado.grid(row=13, column=1, columnspan=5, sticky="nsew")
 
+        self.boton_reiniciar = Button(ventana, text="Significado", command=self.reiniciar,
+                                        font=("Arial", 16))
+
         self.tablero_labels = []
         for i in range(6):
             fila_labels = []
@@ -110,7 +113,7 @@ class Game:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
-                    text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabraOculta.palabra_oculta}")
+                    text=f"¡Has perdido! \n La palabra correcta era: {self.palabraOculta.palabra_oculta}")
 
         except (LenError, InvalidWordError, NotFoundWordError) as e:
             self.error.config(text=str(e))
@@ -140,6 +143,9 @@ class Game:
         fig, ax = plt.subplots()
         ax.barh(etiquetas, width=stats)
         plt.show()
+
+    def reiniciar(self):
+        pass
 
 
 if __name__ == "__main__":
