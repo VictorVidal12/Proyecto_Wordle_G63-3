@@ -62,7 +62,6 @@ class Jugador:
         self.estadisticas: dict[str, int] = {"Partidas ganadas": 0, "Partidas perdidas": 0, "Partidas jugadas": 0,
                                              "Racha": 0, "Mejor racha": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0,
                                              "6": 0}
-
     def intento_realizado(self):
         self.intentos += 1
 
