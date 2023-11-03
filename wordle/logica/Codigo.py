@@ -48,7 +48,7 @@ class PalabraOculta:
             print(retroalimentacion)
 
     def significado(self):
-        return random_words[f"{self.palabra_oculta} definition"]
+        return f"El significado de la palabra {self.palabra_oculta} es: ", random_words[f"{self.palabra_oculta} definition"]
 
 
 class Jugador:
