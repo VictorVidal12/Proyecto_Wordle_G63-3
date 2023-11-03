@@ -80,11 +80,11 @@ class Game:
 
         self.boton_significado = Button(ventana, text="Significado", command=self.wordle.palabraoculta.significado(),
                                         font=("Arial", 16))
-        self.boton_significado.grid(row=12, column=2, columnspan=5, sticky="nsew")
+        self.boton_significado.grid(row=13, column=2, columnspan=5, sticky="nsew")
 
-        self.boton_reiniciar = Button(ventana, text="Significado", command=self.reiniciar,
+        self.boton_reiniciar = Button(ventana, text="Reiniciar", command=self.reiniciar,
                                       font=("Arial", 16))
-        self.boton_reiniciar.grid(row=12, column=3, columnspan=5, sticky="nsew")
+        self.boton_reiniciar.grid(row=14, column=3, columnspan=5, sticky="nsew")
 
         self.tablero_labels = []
         for i in range(6):
