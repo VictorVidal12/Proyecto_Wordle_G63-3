@@ -1,5 +1,4 @@
 import json
-
 import requests
 
 """
@@ -12,9 +11,8 @@ def get_random_word(length):
     random_word_api_url = "https://random-word-api.herokuapp.com/word"
     random_word_api_response = requests.get(
         random_word_api_url, params={"length": length, "lang": "en"})
-
-    random_word = random_word_api_response.json()[0]
-    return random_word
+    randomword = random_word_api_response.json()[0]
+    return randomword
 
 
 def get_word_definition(word):
@@ -35,7 +33,3 @@ def get_randoms_words_with_meanings(length):
         words[word] = word
         words[f'{word} definition'] = definition
     return words
-
-
-rdw = get_randoms_words_with_meanings(5)
-print(rdw)

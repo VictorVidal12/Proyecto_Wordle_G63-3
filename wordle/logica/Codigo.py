@@ -1,18 +1,19 @@
 import random
+from wordle.logica.palabras import get_randoms_words_with_meanings, get_random_word, get_word_definition
 from typing import Union
 from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
 import requests
 import ast
 
 lista_de_palabras: list[str] = []
-with open("palabras.txt", "r") as plb:
-    linea = plb.readline()
-    while linea != '':
-        lista_de_palabras.append(linea.lower())
-        linea = plb.readline()
+random_words = get_randoms_words_with_meanings(5)
+for key, value in random_words.items():
+    if key == value:
+        lista_de_palabras.append(value)
+    else:
+        continue
 
 
-# tiene el error de que no encuentra el archivo palabras.txt
 
 class PalabraOculta:
     def __init__(self):
@@ -51,10 +52,7 @@ class PalabraOculta:
             print(retroalimentacion)
 
     def significado(self):
-        api_url = 'https://api.api-ninjas.com/v1/dictionary?word={}'.format(self.palabra_oculta)
-        response = requests.get(api_url, headers={'X-Api-Key': '74w5GflDZj4lbxnx3l7Lrg==129rRPt1vTEb5hdg'})
-        significado = ast.literal_eval(response.text)
-        return significado['definition']
+        return random_words[f"{self.palabra_oculta} definition"]
 
 
 class Jugador:
