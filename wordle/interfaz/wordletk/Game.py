@@ -160,10 +160,8 @@ class Game:
         self.actualizar_tablero()
 
     def significado(self):
-        if self.wordle.jugador_gano(self.ingresar_palabra()) or self.wordle.jugador_perdio(self.ingresar_palabra()):
+        if self.wordle.jugador_gano(self.entrada_palabra.get()) or self.wordle.jugador_perdio(self.entrada_palabra.get()):
             messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
-        else:
-            messagebox.showinfo(title="Significado", message="Aún no has terminado de jugar")
 
 
 if __name__ == "__main__":
