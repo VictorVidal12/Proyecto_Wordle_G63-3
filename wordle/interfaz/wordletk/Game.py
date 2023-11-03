@@ -1,7 +1,8 @@
-from tkinter import Tk, Button, Entry, Label, messagebox
+from tkinter import Tk, Button, Entry, Label
 from wordle.logica.Codigo import Wordle
-from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
+from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
 import matplotlib.pyplot as plt
+
 """
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
 creados en WordleErrors.
@@ -76,10 +77,11 @@ class Game:
         self.etiqueta_tablero = Label(ventana, text="", font=("Arial", 16))
         self.etiqueta_tablero.grid(row=11, column=0, columnspan=5, sticky="nsew")
 
-        self.boton_estadisticas = Button(ventana, text="Estadisticas",command= self.estadisticas, font=("Arial", 16))
+        self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
         self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
 
-        self.boton_significado= Button(ventana, text="Significado",command=self.palabraOculta.significado, font=("Arial", 16))
+        self.boton_significado = Button(ventana, text="Significado", command=self.palabraOculta.significado,
+                                        font=("Arial", 16))
         self.boton_significado.grid(row=12, column=2, columnspan=5, sticky="nsew")
 
         self.tablero_labels = []
@@ -99,20 +101,19 @@ class Game:
             if len(palabra) != 5 or not palabra.isalpha() or not palabra.islower():
                 raise LenError("Por favor, ingresa una palabra valida")
 
-            self.etiqueta_error.config(text="")
+            self.error.config(text="")
 
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
 
             if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabraOculta.palabra_oculta:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
-                guardar_resultado(self.palabraOculta.palabra_oculta, palabra, "Victoria")
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
                     text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabraOculta.palabra_oculta}")
 
         except (LenError, InvalidWordError, NotFoundWordError) as e:
-            self.etiqueta_error.config(text=str(e))
+            self.error.config(text=str(e))
 
     def actualizar_tablero(self):
         for i in range(6):
@@ -137,9 +138,8 @@ class Game:
         etiquetas: list[str] = ["Partidas ganadas", "Partidas perdidas", "Partidas Jugadas", "Racha Actual",
                                 "Mejor Racha"]
         fig, ax = plt.subplots()
-        ax.barh(etiquetas, width = stats)
+        ax.barh(etiquetas, width=stats)
         plt.show()
-
 
 
 if __name__ == "__main__":
