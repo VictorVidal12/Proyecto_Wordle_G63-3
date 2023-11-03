@@ -1,12 +1,12 @@
 import random
-import palabras
+from wordle.logica.palabras import get_randoms_words_with_meanings
 from typing import Union
 # from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
 import requests
 import ast
 
 lista_de_palabras: list[str] = []
-random_words = palabras.get_randoms_words_with_meanings(5)
+random_words = get_randoms_words_with_meanings(5)
 for key, value in random_words.items():
     if key == value:
         lista_de_palabras.append(value)
