@@ -161,7 +161,8 @@ class Game:
         self.actualizar_tablero()
 
     def significado(self):
-        significdo = messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
+        if self.wordle.jugador_gano(self.ingresar_palabra()) or self.wordle.jugador_perdio(self.ingresar_palabra()):
+            significdo = messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
 
 
 if __name__ == "__main__":
