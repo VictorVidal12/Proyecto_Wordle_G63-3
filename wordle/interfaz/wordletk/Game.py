@@ -78,12 +78,13 @@ class Game:
         self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
         self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
 
-        self.boton_significado = Button(ventana, text="Significado", command=self.wordle.palabraoculta.significado,
+        self.boton_significado = Button(ventana, text="Significado", command=self.wordle.palabraoculta.significado(),
                                         font=("Arial", 16))
-        self.boton_significado.grid(row=13, column=1, columnspan=5, sticky="nsew")
+        self.boton_significado.grid(row=12, column=2, columnspan=5, sticky="nsew")
 
         self.boton_reiniciar = Button(ventana, text="Significado", command=self.reiniciar,
                                       font=("Arial", 16))
+        self.boton_reiniciar.grid(row=12, column=3, columnspan=5, sticky="nsew")
 
         self.tablero_labels = []
         for i in range(6):
@@ -118,6 +119,9 @@ class Game:
         except (LenError, InvalidWordError, NotFoundWordError) as e:
             self.error.config(text=str(e))
 
+        finally:
+            return palabra
+
     def actualizar_tablero(self):
         for i in range(6):
             for j in range(5):
@@ -134,6 +138,7 @@ class Game:
 
     # Método que grafica las estadisticas del juego:
     def estadisticas(self):
+        self.wordle.actualizar_estadisticas(self.ingresar_palabra())
         stats: list[int] = [self.wordle.jugador.estadisticas["Partidas ganadas"],
                             self.wordle.jugador.estadisticas["Partidas perdidas"],
                             self.wordle.jugador.estadisticas["Partidas jugadas"],

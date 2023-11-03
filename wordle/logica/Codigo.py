@@ -11,7 +11,6 @@ for key, value in random_words.items():
     else:
         continue
 
-
 class PalabraOculta:
     def __init__(self):
         self.palabra_oculta: str = lista_de_palabras[random.randint(0, len(lista_de_palabras) - 1)]
