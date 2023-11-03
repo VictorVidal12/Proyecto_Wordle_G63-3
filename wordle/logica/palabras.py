@@ -32,11 +32,8 @@ def get_randoms_words_with_meanings(length):
             meaning_response = get_word_definition(word)
             status_code = meaning_response.status_code
         definition = meaning_response.json()[0]["meanings"][0]["definitions"][0]["definition"]
-        random_word = {
-            'word': word,
-            'definition': definition}
-        words[word] = random_word['word']
-        words[f'{word} definition'] = random_word['definition']
+        words[word] = word
+        words[f'{word} definition'] = definition
     return words
 
 
