@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from io import BytesIO
 from tkinter import Tk
-from wordle.interfaz.wordletk.Game import WordleGame
+from wordle.interfaz.wordletk.Game import Game
 
 
 if __name__ == "__main__":
@@ -10,7 +10,7 @@ if __name__ == "__main__":
         on_closing()
         ventana_2 = Tk()
         ventana_2.configure(bg="white")
-        juego = WordleGame(ventana_2)
+        juego = Game(ventana_2)
         ventana_2.mainloop()
 
 
