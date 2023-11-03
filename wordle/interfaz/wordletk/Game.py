@@ -126,6 +126,11 @@ class Game:
         ax.barh(etiquetas, width=stats)
         plt.show()
 
+def guardar_resultado(palabra_correcta, palabra_ingresada, resultado):
+    with open("historial_juegos.txt", "a") as file:
+        file.write(
+            f"Palabra correcta: {palabra_correcta}, Palabra ingresada: {palabra_ingresada}, Resultado: {resultado}\n")
+
 
 if __name__ == "__main__":
     ventana = Tk()

@@ -1,7 +1,7 @@
 import random
 from wordle.logica.palabras import get_randoms_words_with_meanings, get_random_word, get_word_definition
 from typing import Union
-# from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
+from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
 import requests
 import ast
 
@@ -27,6 +27,8 @@ class PalabraOculta:
         return Jugador.ingresar_palabra in lista_de_palabras
 
     def comparar_palabras(self, palabra_intento: str) -> bool:
+        if len(palabra_intento)!=5:
+            raise LenError("La palabra debe ser de 5 caracteres")
         return palabra_intento == self.palabra_oculta
 
     def retroalimentar(self, palabra_intento: str):
@@ -60,11 +62,16 @@ class Jugador:
         self.estadisticas: dict[str, int] = {"Partidas ganadas": 0, "Partidas perdidas": 0, "Partidas jugadas": 0,
                                              "Racha": 0, "Mejor racha": 0, "1": 0, "2": 0, "3": 0, "4": 0, "5": 0,
                                              "6": 0}
-
     def intento_realizado(self):
         self.intentos += 1
 
     def ingresar_palabra(self, palabra_intento: str) -> Union[str, bool]:
+
+        if not isinstance(palabra_intento, str) or not palabra_intento.isalpha():
+            raise InvalidWordError("La palabra debe ser una cadena de texto valida.")
+        if palabra_intento not in lista_de_palabras:
+            raise NotFoundWordError("a palabra no se encuentra en la lista de palabras")
+
         if PalabraOculta.verificar_palabra():
             self.intento_realizado()
             return palabra_intento

@@ -18,7 +18,7 @@
     </a>
     <h4 class="mx-auto" style="color: white; "> Wordle UdeM</h4>
 
-    <button type="button" class="btn btn-tall btn-dark">
+    <button type="button" class="btn btn-tall btn-dark" data-bs-toggle="modal" data-bs-target="#instrucciones">
         <div class="button">
             <div class="circle-container">
                 <img src="https://icones.pro/wp-content/uploads/2021/05/icone-point-d-interrogation-question-noir.png"  width="44"  height="44" class="d-inline-block align-text-top">
@@ -36,6 +36,7 @@
     </button>
   </div>
 </nav>
+
 
 <div class="container-fluid">
 
@@ -332,6 +333,24 @@
     </div>
 
 </div>
+
+<!--instrucciones-->
+
+<div class="modal fade text-center" id="instrucciones" tabindex="-1" aria-labelledby="Instrucciones" aria-hidden="true">
+  <div class="modal-dialog-dark ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p>Como jugar</p>
+      </div>
+      <div class="modal-body text-center">
+        <!-- Contenido del modal -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 {%endblock%}
