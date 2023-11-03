@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, Entry, Label, messagebox, END
+from tkinter import Tk, Button, Entry, Label, messagebox
 from wordle.logica.Codigo import Wordle
 from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
 from wordle.interfaz.wordletk.Login import Nombre
