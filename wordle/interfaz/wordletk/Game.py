@@ -48,6 +48,7 @@ class Game:
         self.wordle.palabraoculta = self.wordle.palabraoculta
         self.wordle.jugador = self.wordle.jugador
 
+
         for i in range(11):
             self.ventana.rowconfigure(i, weight=1)
         for j in range(5):
@@ -75,6 +76,12 @@ class Game:
 
         self.etiqueta_tablero = Label(ventana, text="", font=("Arial", 16))
         self.etiqueta_tablero.grid(row=11, column=0, columnspan=5, sticky="nsew")
+
+        self.boton_estadisticas = Button(ventana, text="Estadisticas",command= self.estadisticas, font=("Arial", 16))
+        self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
+
+        self.boton_significado= Button(ventana, text="Significado",command=self.palabraOculta.significado, font=("Arial", 16))
+        self.boton_significado.grid(row=12, column=2, columnspan=5, sticky="nsew")
 
         self.tablero_labels = []
         for i in range(6):
@@ -123,7 +130,9 @@ class Game:
         etiquetas: list[str] = ["Partidas ganadas", "Partidas perdidas", "Partidas Jugadas", "Racha Actual",
                                 "Mejor Racha"]
         fig, ax = plt.subplots()
-        ax.barh(etiquetas, widht = stats)
+        ax.barh(etiquetas, width = stats)
+        plt.show()
+
 
 
 if __name__ == "__main__":
