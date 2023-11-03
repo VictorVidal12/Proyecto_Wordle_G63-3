@@ -110,6 +110,7 @@ https://www.figma.com/proto/fI06NkyY1qP9jk2nMZlaAr/Wordle_G3-3?type=design&node-
 |Finalizar juego| salir(bool)| Wordle      |
 
 # Modelo del mundo del problema (UML)
-![Diagrama de clases Wordle G63-3 (2)](https://github.com/VictorVidal12/Proyecto_Wordle_G63-3/assets/110042484/c80c5d87-a36d-43a4-a098-cd20da8cc735)
+![Diagrama de clases Wordle G63-3 (2)](https://github.com/VictorVidal12/Proyecto_Wordle_G63-3/assets/110042484/551be563-bc5f-4e48-aec0-c750f43f3ee5)
+
 
 
