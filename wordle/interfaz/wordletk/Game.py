@@ -1,8 +1,7 @@
-from tkinter import Tk, Button, Entry, Label, messagebox
-from tkinter.constants import END
+from tkinter import Tk, Button, Entry, Label, messagebox, END
 from wordle.logica.Codigo import Wordle
 from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
-from wordle.interfaz.wordletk.Login import Nombre
+# from wordle.interfaz.wordletk.Login import Nombre
 import matplotlib.pyplot as plt
 
 """
@@ -13,33 +12,35 @@ También se debe de organizar la estética del programa
 
 
 class Tablero:
-    def __init__(self):
+    def __init__(self, palabra_oculta, wordle):
 
         self.num_intentos = 0
         self.matriz = []
+        self.palabra_oculta = palabra_oculta
+        self.wordle = wordle
         self.llenar_tablero()
 
     def llenar_tablero(self):
         for i in range(6):
             self.matriz.append(["_" for _ in range(5)])
 
-    def actualizar_tablero(self, palabra, wordle):
+    def actualizar_tablero(self, palabra):
         if self.num_intentos < 6:
-            if palabra == wordle.palabraoculta.palabra_oculta:
+            if palabra == self.palabra_oculta:
                 for i, letra in enumerate(palabra):
-                    self.matriz[wordle.jugador.intentos][i] = letra
-                wordle.jugador.intento_realizado()
+                    self.matriz[self.num_intentos][i] = letra
+                self.wordle.jugador.intento_realizado()
                 self.num_intentos = 6
                 return
             else:
                 for i, letra in enumerate(palabra):
-                    if letra == wordle.palabra_oculta.palabraoculta[i]:
-                        self.matriz[wordle.jugador.intentos][i] = letra
-                    elif letra in wordle.palabraoculta.palabra_oculta:
-                        self.matriz[wordle.jugador.intentos][i] = letra.lower()
+                    if letra == self.palabra_oculta[i]:
+                        self.matriz[self.num_intentos][i] = letra
+                    elif letra in self.palabra_oculta:
+                        self.matriz[self.num_intentos][i] = letra.lower()
                     else:
-                        self.matriz[wordle.jugador.intentos][i] = letra
-                wordle.jugador.intento_realizado()
+                        self.matriz[self.num_intentos][i] = letra
+                self.wordle.jugador.intento_realizado()
                 self.num_intentos += 1
 
 
@@ -49,14 +50,14 @@ class Game:
         self.ventana = ventana
         self.ventana.title("Wordle")
         self.ventana.configure(bg="white")
-        self.wordle = Wordle(nombre=Nombre)
+        self.wordle = Wordle(nombre="")
 
         for i in range(11):
             self.ventana.rowconfigure(i, weight=1)
         for j in range(5):
             self.ventana.columnconfigure(j, weight=1)
 
-        self.tablero = Tablero()
+        self.tablero = Tablero(self.wordle.palabraoculta.palabra_oculta, self.wordle)
 
         self.etiqueta = Label(ventana, text="WORDLE UDEM", font=("Arial", 16))
         self.etiqueta.grid(row=0, column=0, columnspan=5, sticky="nsew")
@@ -81,8 +82,8 @@ class Game:
         self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
         self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
 
-        self.significado = Button(ventana, text="Significado", command=self.significado, font=("Arial", 16))
-        self.boton_estadisticas.grid(row=13, column=1, columnspan=5, sticky="nsew")
+        self.significado = Button(ventana, text="Significado", command=self.mostrar_significado, font=("Arial", 16))
+        self.significado.grid(row=13, column=1, columnspan=5, sticky="nsew")
         self.boton_reiniciar = Button(ventana, text="Reiniciar", command=self.reiniciar,
                                       font=("Arial", 16))
         self.boton_reiniciar.grid(row=14, column=3, columnspan=5, sticky="nsew")
@@ -97,6 +98,9 @@ class Game:
                 fila_labels.append(label)
             self.tablero_labels.append(fila_labels)
 
+    def mostrar_significado(self):
+        messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
+
     def ingresar_palabra(self):
         palabra = self.entrada_palabra.get()
 
@@ -106,7 +110,7 @@ class Game:
 
             self.error.config(text="")
 
-            self.tablero.actualizar_tablero(palabra, self.wordle)
+            self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
 
             if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.wordle.palabraoculta.palabra_oculta:
@@ -152,10 +156,9 @@ class Game:
 
     def reiniciar(self):
         self.entrada_palabra.delete(0, END)
-        self.error.config(text ="")
+        self.error.config(text="")
         self.etiqueta_tablero.config(text="")
         self.actualizar_tablero()
-
 
     def significado(self):
         return messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
