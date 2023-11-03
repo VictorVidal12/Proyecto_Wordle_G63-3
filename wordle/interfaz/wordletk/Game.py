@@ -123,11 +123,14 @@ class Game:
         etiquetas: list[str] = ["Partidas ganadas", "Partidas perdidas", "Partidas Jugadas", "Racha Actual",
                                 "Mejor Racha"]
         fig, ax = plt.subplots()
-        ax.barh(etiquetas, widht = stats)
+        ax.barh(etiquetas, width=stats)
+        plt.show()
 
 
 if __name__ == "__main__":
     ventana = Tk()
     ventana.configure(bg="white")
     juego = Game(ventana)
+    juego.estadisticas()
+
     ventana.mainloop()
