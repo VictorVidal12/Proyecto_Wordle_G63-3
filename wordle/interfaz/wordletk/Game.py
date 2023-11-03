@@ -5,40 +5,41 @@ from wordle.logica.Codigo import Wordle
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
 creados en WordleErrors.
 
-También se debe de organizar la estética del programa
+También se debe de organizar la estética del programa, para que sea parecida a la 
+del prototipo
 """
 
 
 class Tablero:
-    def __init__(self, palabra_correcta):
+    def __init__(self, palabra_oculta):
         self.num_intentos = 0
         self.matriz = []
-        self.palabra_correcta = palabra_correcta
-        self.llenar_matriz()
+        self.palabra_oculta = palabra_oculta
+        self.llenar_tablero()
 
-    def llenar_matriz(self):
+    def llenar_tablero(self):
         for i in range(6):
             self.matriz.append(["_" for _ in range(5)])
 
     def actualizar_tablero(self, palabra):
-        while self.num_intentos < 6:
-            if palabra == self.palabra_correcta:
+        if self.num_intentos < 6:
+            if palabra == self.palabra_oculta:
                 for i, letra in enumerate(palabra):
                     self.matriz[self.num_intentos][i] = letra
                 self.num_intentos = 6
                 return
             else:
                 for i, letra in enumerate(palabra):
-                    if letra == self.palabra_correcta[i]:
+                    if letra == self.palabra_oculta[i]:
                         self.matriz[self.num_intentos][i] = letra
-                    elif letra in self.palabra_correcta:
+                    elif letra in self.palabra_oculta:
                         self.matriz[self.num_intentos][i] = letra.lower()
                     else:
                         self.matriz[self.num_intentos][i] = letra
                 self.num_intentos += 1
 
 
-class WordleGame:
+class Game:
     def __init__(self, ventana):
         self.ventana = ventana
         self.ventana.title("Wordle")
@@ -55,7 +56,7 @@ class WordleGame:
         self.palabraOculta = self.wordle.palabraoculta
         self.tablero = Tablero(self.palabraOculta.palabra_oculta)
 
-        self.etiqueta = Label(ventana, text="WORDLE", font=("Arial", 16))
+        self.etiqueta = Label(ventana, text="WORDLE UDEM", font=("Arial", 16))
         self.etiqueta.grid(row=0, column=0, columnspan=5, sticky="nsew")
 
         self.etiqueta_palabra = Label(ventana, text="Ingresa una palabra de 5 letras:",
@@ -65,7 +66,7 @@ class WordleGame:
         self.entrada_palabra = Entry(ventana, font=("Arial", 12))
         self.entrada_palabra.grid(row=2, column=0, columnspan=5, sticky="nsew")
 
-        self.boton_adivinar = Button(ventana, text="Adivinar", command=self.adivinar_palabra, font=("Courier", 12))
+        self.boton_adivinar = Button(ventana, text="Ingresar palabra", command=self.ingresar_palabra, font=("Arial", 12))
         self.boton_adivinar.grid(row=3, column=0, columnspan=5, sticky="nsew")
 
         self.etiqueta_error = Label(ventana, text="", fg="red", font=("Arial", 12))
@@ -84,7 +85,7 @@ class WordleGame:
                 fila_labels.append(label)
             self.tablero_labels.append(fila_labels)
 
-    def adivinar_palabra(self):
+    def ingresar_palabra(self):
         palabra = self.entrada_palabra.get()
         if len(palabra) == 5 and palabra.isalpha() and palabra.islower():
             self.etiqueta_error.config(text="")
@@ -123,5 +124,5 @@ def guardar_resultado(palabra_correcta, palabra_ingresada, resultado):
 if __name__ == "__main__":
     ventana = Tk()
     ventana.configure(bg="white")
-    juego = WordleGame(ventana)
+    juego = Game(ventana)
     ventana.mainloop()
