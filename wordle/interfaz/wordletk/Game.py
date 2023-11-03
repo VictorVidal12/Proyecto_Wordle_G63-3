@@ -1,12 +1,12 @@
 from tkinter import Tk, Button, Entry, Label, messagebox
 from wordle.logica.Codigo import Wordle
 from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
+from wordle.interfaz.wordletk.Login import Nombre
 import matplotlib.pyplot as plt
 
 """
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
 creados en WordleErrors.
-
 También se debe de organizar la estética del programa
 """
 
@@ -49,7 +49,7 @@ class Game(Tk):
         self.ventana = ventana
         self.ventana.title("Wordle")
         self.ventana.configure(bg="white")
-        self.wordle = Wordle(nombre="")
+        self.wordle = Wordle(nombre=Nombre)
 
         for i in range(11):
             self.ventana.rowconfigure(i, weight=1)
