@@ -1,5 +1,5 @@
 import random
-from wordle.logica.palabras import get_randoms_words_with_meanings
+from wordle.logica.palabras import get_randoms_words_with_meanings, get_random_word, get_word_definition
 from typing import Union
 # from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
 import requests
