@@ -12,7 +12,6 @@ for key, value in random_words.items():
         continue
 
 
-
 class PalabraOculta:
     def __init__(self):
         self.palabra_oculta: str = lista_de_palabras[random.randint(0, len(lista_de_palabras) - 1)]
@@ -25,7 +24,7 @@ class PalabraOculta:
         return Jugador.ingresar_palabra in lista_de_palabras
 
     def comparar_palabras(self, palabra_intento: str) -> bool:
-        if len(palabra_intento)!=5:
+        if len(palabra_intento) != 5:
             raise LenError("La palabra debe ser de 5 caracteres")
         return palabra_intento == self.palabra_oculta
 

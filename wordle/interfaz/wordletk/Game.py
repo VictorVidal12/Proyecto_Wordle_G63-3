@@ -46,7 +46,6 @@ class Game:
         self.ventana.title("Wordle")
         self.ventana.configure(bg="white")
         self.wordle = Wordle(nombre="")
-        self.wordle.palabraoculta = self.wordle.palabraoculta
         self.wordle.jugador = self.wordle.jugador
 
         for i in range(11):
@@ -54,8 +53,7 @@ class Game:
         for j in range(5):
             self.ventana.columnconfigure(j, weight=1)
 
-        self.palabraOculta = self.wordle.palabraoculta
-        self.tablero = Tablero(self.palabraOculta.palabra_oculta)
+        self.tablero = Tablero(self.wordle.palabraoculta.palabra_oculta)
 
         self.etiqueta = Label(ventana, text="WORDLE UDEM", font=("Arial", 16))
         self.etiqueta.grid(row=0, column=0, columnspan=5, sticky="nsew")
@@ -80,12 +78,12 @@ class Game:
         self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
         self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
 
-        self.boton_significado = Button(ventana, text="Significado", command=self.palabraOculta.significado,
+        self.boton_significado = Button(ventana, text="Significado", command=self.wordle.palabraoculta.significado,
                                         font=("Arial", 16))
         self.boton_significado.grid(row=13, column=1, columnspan=5, sticky="nsew")
 
         self.boton_reiniciar = Button(ventana, text="Significado", command=self.reiniciar,
-                                        font=("Arial", 16))
+                                      font=("Arial", 16))
 
         self.tablero_labels = []
         for i in range(6):
@@ -109,11 +107,13 @@ class Game:
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
 
-            if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabraOculta.palabra_oculta:
+            if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.wordle.palabraoculta.palabra_oculta:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
+                self.wordle.actualizar_estadisticas(palabra)
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
-                    text=f"¡Has perdido! \n La palabra correcta era: {self.palabraOculta.palabra_oculta}")
+                    text=f"¡Has perdido! \n La palabra correcta era: {self.wordle.palabraoculta.palabra_oculta}")
+                self.wordle.actualizar_estadisticas(palabra)
 
         except (LenError, InvalidWordError, NotFoundWordError) as e:
             self.error.config(text=str(e))
@@ -125,9 +125,9 @@ class Game:
                 label = self.tablero_labels[i][j]
                 if letra == "_":
                     label.config(text=letra, bg="white")
-                elif letra == self.palabraOculta.palabra_oculta[j]:
+                elif letra == self.wordle.palabraoculta.palabra_oculta[j]:
                     label.config(text=letra, bg="green")
-                elif letra in self.palabraOculta.palabra_oculta:
+                elif letra in self.wordle.palabraoculta.palabra_oculta:
                     label.config(text=letra, bg="yellow")
                 else:
                     label.config(text=letra, bg="white")
@@ -141,7 +141,7 @@ class Game:
         etiquetas: list[str] = ["Partidas ganadas", "Partidas perdidas", "Partidas Jugadas", "Racha Actual",
                                 "Mejor Racha"]
         fig, ax = plt.subplots()
-        ax.barh(etiquetas, width=stats)
+        ax.barh(etiquetas, width=stats, left=0.212)
         plt.show()
 
     def reiniciar(self):
