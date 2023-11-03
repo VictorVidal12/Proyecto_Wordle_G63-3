@@ -155,6 +155,8 @@ class Game:
         plt.show()
 
     def reiniciar(self):
+        self.wordle = Wordle(nombre="")
+        self.tablero = Tablero(self.wordle.palabraoculta.palabra_oculta, self.wordle)
         self.entrada_palabra.delete(0, END)
         self.error.config(text="")
         self.etiqueta_tablero.config(text="")
