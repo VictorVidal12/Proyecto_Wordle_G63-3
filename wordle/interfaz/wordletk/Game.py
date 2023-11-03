@@ -158,7 +158,7 @@ class Game:
 
 
     def significado(self):
-        return messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
+        significdo = messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
 
 
 if __name__ == "__main__":
