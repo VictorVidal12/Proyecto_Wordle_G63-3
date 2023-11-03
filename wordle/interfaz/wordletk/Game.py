@@ -82,7 +82,7 @@ class Game:
 
         self.boton_significado = Button(ventana, text="Significado", command=self.palabraOculta.significado,
                                         font=("Arial", 16))
-        self.boton_significado.grid(row=12, column=2, columnspan=5, sticky="nsew")
+        self.boton_significado.grid(row=13, column=1, columnspan=5, sticky="nsew")
 
         self.tablero_labels = []
         for i in range(6):
