@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, Entry, Label
+from tkinter import Tk, Button, Entry, Label, messagebox
 from wordle.logica.Codigo import Wordle
 from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
 import matplotlib.pyplot as plt
@@ -81,10 +81,8 @@ class Game(Tk):
         self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
         self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
 
-        self.boton_significado = Button(ventana, text="Significado", command=self.wordle.palabraoculta.significado(),
-                                        font=("Arial", 16))
-        self.boton_significado.grid(row=13, column=2, columnspan=5, sticky="nsew")
-
+        self.significado = messagebox.showinfo(title="Significado",
+                                                     message=self.wordle.palabraoculta.significado())
         self.boton_reiniciar = Button(ventana, text="Reiniciar", command=self.reiniciar,
                                       font=("Arial", 16))
         self.boton_reiniciar.grid(row=14, column=3, columnspan=5, sticky="nsew")
@@ -149,7 +147,7 @@ class Game(Tk):
         etiquetas: list[str] = ["Partidas ganadas", "Partidas perdidas", "Partidas Jugadas", "Racha Actual",
                                 "Mejor Racha"]
         fig, ax = plt.subplots()
-        ax.barh(etiquetas, width=stats, left=0.212)
+        ax.barh(etiquetas, width=stats)
         plt.show()
 
     def reiniciar(self):
