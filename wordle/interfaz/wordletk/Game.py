@@ -121,9 +121,6 @@ class Game:
         except (LenError, InvalidWordError, NotFoundWordError) as e:
             self.error.config(text=str(e))
 
-        finally:
-            return palabra
-
     def actualizar_tablero(self):
         for i in range(6):
             for j in range(5):
@@ -140,7 +137,6 @@ class Game:
 
     # Método que grafica las estadisticas del juego:
     def estadisticas(self):
-        self.wordle.actualizar_estadisticas(self.ingresar_palabra())
         stats: list[int] = [self.wordle.jugador.estadisticas["Partidas ganadas"],
                             self.wordle.jugador.estadisticas["Partidas perdidas"],
                             self.wordle.jugador.estadisticas["Partidas jugadas"],
