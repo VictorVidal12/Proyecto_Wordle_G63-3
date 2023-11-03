@@ -12,11 +12,10 @@ También se debe de organizar la estética del programa
 
 
 class Tablero:
-    def __init__(self, palabra_oculta):
+    def __init__(self):
 
         self.num_intentos = 0
         self.matriz = []
-        self.palabra_oculta = palabra_oculta
         self.llenar_tablero()
 
     def llenar_tablero(self):
@@ -35,7 +34,7 @@ class Tablero:
                 for i, letra in enumerate(palabra):
                     if letra == wordle.palabra_oculta.palabraoculta[i]:
                         self.matriz[wordle.jugador.intentos][i] = letra
-                    elif letra in self.palabra_oculta:
+                    elif letra in wordle.palabraoculta.palabra_oculta:
                         self.matriz[wordle.jugador.intentos][i] = letra.lower()
                     else:
                         self.matriz[wordle.jugador.intentos][i] = letra
@@ -56,7 +55,7 @@ class Game:
         for j in range(5):
             self.ventana.columnconfigure(j, weight=1)
 
-        self.tablero = Tablero(self.wordle.palabraoculta.palabra_oculta)
+        self.tablero = Tablero()
 
         self.etiqueta = Label(ventana, text="WORDLE UDEM", font=("Arial", 16))
         self.etiqueta.grid(row=0, column=0, columnspan=5, sticky="nsew")
