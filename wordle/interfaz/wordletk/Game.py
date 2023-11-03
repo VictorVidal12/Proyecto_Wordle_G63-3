@@ -1,4 +1,4 @@
-from tkinter import Tk, Button, Entry, Label, messagebox
+from tkinter import Tk, Button, Entry, Label, messagebox, END
 from wordle.logica.Codigo import Wordle
 from wordle.logica.WordleErrors import InvalidWordError, LenError, NotFoundWordError
 from wordle.interfaz.wordletk.Login import Nombre
@@ -150,7 +150,11 @@ class Game:
         plt.show()
 
     def reiniciar(self):
-        pass
+        self.entrada_palabra.delete(0, END)
+        self.error.config(text ="")
+        self.etiqueta_tablero.config(text="")
+        self.actualizar_tablero()
+
 
     def significado(self):
         return messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
