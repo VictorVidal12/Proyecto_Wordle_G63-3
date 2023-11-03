@@ -11,8 +11,9 @@ También se debe de organizar la estética del programa
 """
 
 
-class Tablero:
+class Tablero(Tk):
     def __init__(self, palabra_oculta):
+        super().__init__()
         self.num_intentos = 0
         self.matriz = []
         self.palabra_oculta = palabra_oculta
@@ -40,8 +41,9 @@ class Tablero:
                 self.num_intentos += 1
 
 
-class Game:
+class Game(Tk):
     def __init__(self, ventana):
+        super().__init__()
         self.ventana = ventana
         self.ventana.title("Wordle")
         self.ventana.configure(bg="white")
