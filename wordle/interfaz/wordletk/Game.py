@@ -81,8 +81,8 @@ class Game:
         self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
         self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
 
-        self.significado = messagebox.showinfo(title="Significado",
-                                                     message=self.wordle.palabraoculta.significado())
+        self.significado = Button(ventana, text="Estadisticas", command=  messagebox.showinfo(title="Significado",message=self.wordle.palabraoculta.significado()), font=("Arial", 16))
+        self.boton_estadisticas.grid(row=13, column=1, columnspan=5, sticky="nsew")
         self.boton_reiniciar = Button(ventana, text="Reiniciar", command=self.reiniciar,
                                       font=("Arial", 16))
         self.boton_reiniciar.grid(row=14, column=3, columnspan=5, sticky="nsew")
