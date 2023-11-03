@@ -1,12 +1,12 @@
 from tkinter import Tk, Button, Entry, Label, messagebox
 from wordle.logica.Codigo import Wordle
+from wordle.logica.WordleErrors import WordleError, InvalidWordError, LenError, NotFoundWordError
 import matplotlib.pyplot as plt
-
 """
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
 creados en WordleErrors.
-También se debe de organizar la estética del programa, para que sea parecida a la 
-del prototipo
+
+También se debe de organizar la estética del programa
 """
 
 
@@ -47,7 +47,6 @@ class Game:
         self.wordle = Wordle(nombre="")
         self.wordle.palabraoculta = self.wordle.palabraoculta
         self.wordle.jugador = self.wordle.jugador
-
 
         for i in range(11):
             self.ventana.rowconfigure(i, weight=1)
@@ -95,17 +94,25 @@ class Game:
 
     def ingresar_palabra(self):
         palabra = self.entrada_palabra.get()
-        if len(palabra) == 5 and palabra.isalpha() and palabra.islower():
-            self.error.config(text="")
+
+        try:
+            if len(palabra) != 5 or not palabra.isalpha() or not palabra.islower():
+                raise LenError("Por favor, ingresa una palabra valida")
+
+            self.etiqueta_error.config(text="")
+
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
+
             if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabraOculta.palabra_oculta:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
+                guardar_resultado(self.palabraOculta.palabra_oculta, palabra, "Victoria")
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
                     text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabraOculta.palabra_oculta}")
-        else:
-            self.error.config(text="Por favor, ingresa una palabra válida")
+
+        except (LenError, InvalidWordError, NotFoundWordError) as e:
+            self.etiqueta_error.config(text=str(e))
 
     def actualizar_tablero(self):
         for i in range(6):
