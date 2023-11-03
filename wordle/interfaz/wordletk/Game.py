@@ -82,7 +82,7 @@ class Game:
         self.boton_estadisticas = Button(ventana, text="Estadisticas", command=self.estadisticas, font=("Arial", 16))
         self.boton_estadisticas.grid(row=12, column=1, columnspan=5, sticky="nsew")
 
-        self.significado = Button(ventana, text="Significado", command=self.mostrar_significado, font=("Arial", 16))
+        self.significado = Button(ventana, text="Significado", command=self.significado, font=("Arial", 16))
         self.significado.grid(row=13, column=1, columnspan=5, sticky="nsew")
         self.boton_reiniciar = Button(ventana, text="Reiniciar", command=self.reiniciar,
                                       font=("Arial", 16))
@@ -98,8 +98,7 @@ class Game:
                 fila_labels.append(label)
             self.tablero_labels.append(fila_labels)
 
-    def mostrar_significado(self):
-        messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
+
 
     def ingresar_palabra(self):
         palabra = self.entrada_palabra.get()
@@ -162,7 +161,9 @@ class Game:
 
     def significado(self):
         if self.wordle.jugador_gano(self.ingresar_palabra()) or self.wordle.jugador_perdio(self.ingresar_palabra()):
-            significdo = messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
+            messagebox.showinfo(title="Significado", message=self.wordle.palabraoculta.significado())
+        else:
+            messagebox.showinfo(title="Significado", message="Aún no has terminado de jugar")
 
 
 if __name__ == "__main__":
