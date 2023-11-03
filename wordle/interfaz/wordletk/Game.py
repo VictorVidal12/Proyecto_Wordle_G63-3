@@ -1,5 +1,6 @@
 from tkinter import Tk, Button, Entry, Label, messagebox
 from wordle.logica.Codigo import Wordle
+import matplotlib.pyplot as plt
 
 """
 Se deben enlazar las excepciones con la aplicación, los excepciones que están
@@ -44,9 +45,9 @@ class Game:
         self.ventana = ventana
         self.ventana.title("Wordle")
         self.ventana.configure(bg="white")
-        self.wordle = Wordle(nombre="")  # hay que hacer que reciba el nombre el login debería de hacerse en esta
-        # misma código
-        self.wordle.palabraoculta = self.wordle.palabraoculta  # no reconoce la clase PalabraOculta()
+        self.wordle = Wordle(nombre="")
+        self.wordle.palabraoculta = self.wordle.palabraoculta
+        self.wordle.jugador = self.wordle.jugador
 
         for i in range(11):
             self.ventana.rowconfigure(i, weight=1)
@@ -66,11 +67,12 @@ class Game:
         self.entrada_palabra = Entry(ventana, font=("Arial", 12))
         self.entrada_palabra.grid(row=2, column=0, columnspan=5, sticky="nsew")
 
-        self.boton_adivinar = Button(ventana, text="Ingresar palabra", command=self.ingresar_palabra, font=("Arial", 12))
+        self.boton_adivinar = Button(ventana, text="Ingresar palabra", command=self.ingresar_palabra,
+                                     font=("Arial", 12))
         self.boton_adivinar.grid(row=3, column=0, columnspan=5, sticky="nsew")
 
-        self.etiqueta_error = Label(ventana, text="", fg="red", font=("Arial", 12))
-        self.etiqueta_error.grid(row=4, column=0, columnspan=5, sticky="nsew")
+        self.error = Label(ventana, text="", fg="red", font=("Arial", 12))
+        self.error.grid(row=4, column=0, columnspan=5, sticky="nsew")
 
         self.etiqueta_tablero = Label(ventana, text="", font=("Arial", 16))
         self.etiqueta_tablero.grid(row=11, column=0, columnspan=5, sticky="nsew")
@@ -88,17 +90,16 @@ class Game:
     def ingresar_palabra(self):
         palabra = self.entrada_palabra.get()
         if len(palabra) == 5 and palabra.isalpha() and palabra.islower():
-            self.etiqueta_error.config(text="")
+            self.error.config(text="")
             self.tablero.actualizar_tablero(palabra)
             self.actualizar_tablero()
             if "".join(self.tablero.matriz[self.tablero.num_intentos - 1]) == self.palabraOculta.palabra_oculta:
                 self.etiqueta_tablero.config(text="¡Has adivinado la palabra!")
-                guardar_resultado(self.palabraOculta.palabra_oculta, palabra, "Victoria")
             elif self.tablero.num_intentos == 6:
                 self.etiqueta_tablero.config(
                     text=f"¡Agotaste tus intentos! La palabra correcta era: {self.palabraOculta.palabra_oculta}")
         else:
-            self.etiqueta_error.config(text="Por favor, ingresa una palabra válida")
+            self.error.config(text="Por favor, ingresa una palabra válida")
 
     def actualizar_tablero(self):
         for i in range(6):
@@ -114,11 +115,16 @@ class Game:
                 else:
                     label.config(text=letra, bg="white")
 
-
-def guardar_resultado(palabra_correcta, palabra_ingresada, resultado):
-    with open("historial_juegos.txt", "a") as file:
-        file.write(
-            f"Palabra correcta: {palabra_correcta}, Palabra ingresada: {palabra_ingresada}, Resultado: {resultado}\n")
+    # Método que grafica las estadisticas del juego:
+    def estadisticas(self):
+        stats: list[int] = [self.wordle.jugador.estadisticas["Partidas ganadas"],
+                            self.wordle.jugador.estadisticas["Partidas perdidas"],
+                            self.wordle.jugador.estadisticas["Partidas jugadas"],
+                            self.wordle.jugador.estadisticas["Racha"], self.wordle.jugador.estadisticas["Mejor racha"]]
+        etiquetas: list[str] = ["Partidas ganadas", "Partidas perdidas", "Partidas Jugadas", "Racha Actual",
+                                "Mejor Racha"]
+        fig, ax = plt.subplots()
+        ax.barh(x=etiquetas, y=stats)
 
 
 if __name__ == "__main__":
